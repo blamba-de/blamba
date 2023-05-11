@@ -11,7 +11,7 @@ FLAGS = $(DEBUG) -O2 -Wall -Wformat=2 -Wtrampolines \
 -fstack-clash-protection -fstack-protector-strong \
 -Wl,-z,nodlopen -Wl,-z,nodump -Wl,-z,noexecstack -Wl,-z,noexecheap \
 -Wl,-z,relro -Wl,-z,now \
--fPIE -pie -fPIC -shared
+-fPIE -pie -fPIC
 
 #DSP = -DDSP
 #WINDOWS = -DWINDOWS -lwinmm

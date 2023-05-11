@@ -3,7 +3,7 @@ class RingtoneTools
 {
 	static function run_sandboxed_ringtonetools($intype, $infile, $outtype, $extraargs = "")
 	{
-		$ringtonetools_binary_path = SERVER_PATH . "vendor-native/ringtonetools-3.00alpha5/ringtonetools";
+		$ringtonetools_binary_path = SERVER_PATH . "vendor-native/ringtonetools/ringtonetools";
 		$seccomp_bpf_path = SERVER_PATH . "vendor-native/bwrap-seccomp/seccomp.bpf";
 
 		return BubblewrapSandbox::run_sandboxed_process(
