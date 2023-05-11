@@ -42,7 +42,7 @@ class BubblewrapSandbox
 
 			proc_close($process);
 
-			if (file_exists($workdir . "output"))
+			if (!is_link($workdir . "output") && is_file($workdir . "output"))
 			{
 				$success = true;
 				$output = file_get_contents($workdir . "output");
