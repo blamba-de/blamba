@@ -1,0 +1,29 @@
+<base href="https://blamba.de/" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Blåmba! - Klingeltöne, Handylogos, Handy-Spiele</title>
+<meta http-equiv="content-Script-Type" content="text/javascript">
+<meta http-equiv="content-Style-Type" content="text/css">
+<meta http-equiv="content-language" content="de,en">
+<meta name="Robots" content="INDEX,FOLLOW">
+<link rel="shortcut icon" href="./assets/blobhaj.png">
+<link rel="stylesheet" href="./assets/global.css">
+<script src="./assets/html-midi-player.js"></script>
+<script type="text/javascript">
+	function play_midi(url)
+	{
+		document.getElementById('midiplayer').stop();
+		document.getElementById('midiplayer').style.display = "revert";
+		document.getElementById('midiplayer').src = url;
+
+		document.getElementById('midiplayer').addEventListener("load", function()
+		{
+			document.getElementById('midiplayer').start();
+		});
+	}
+	function load_midi(url)
+	{
+		document.getElementById('midiplayer').stop();
+		document.getElementById('midiplayer').style.display = "revert";
+		document.getElementById('midiplayer').src = url;
+	}
+</script>

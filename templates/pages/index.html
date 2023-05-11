@@ -1,0 +1,540 @@
+{% extends "template.html" %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+
+              <table cellpadding="0" cellspacing="0" border="0" width="594" class="whiteline">
+                <tbody>
+                  <tr>
+                    <td colspan="3"><img src="./assets/trans.gif" width="1" height="12" border="0" alt=""></td>
+                  </tr>
+                  <tr>
+                    <td align="left" valign="top" width="291">
+                      <table cellpadding="0" cellspacing="0" border="0" width="291">
+                        <tbody>
+                          <tr>
+                            <td align="left" valign="baseline" width="221">
+                              <table cellpadding="0" cellspacing="0" border="0" width="221">
+                                <tbody>
+                                  <tr>
+                                    <td height="17" class="headtop" width="5"><img src="./assets/trans.gif" width="5" height="1" border="0" alt=""></td>
+                                    <td class="headtop" align="left">
+                                      <a class="headlink" href="/">TOP KLINGELTÖNE</a>
+                                    </td>
+                                    <td height="17" width="9" style="background-image:url(./assets/ecke_head.gif); background-repeat:no-repeat;"></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                            <td align="left" valign="top"><img src="./assets/trans.gif" width="9" height="17" border="0" alt=""></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table cellpadding="1" cellspacing="0" border="0" width="291" class="headtop">
+                        <tbody>
+                          <tr>
+                            <td align="center" valign="top">
+                              <table cellpadding="0" cellspacing="0" border="0" width="289" height="148" class="whiteline">
+                                <tbody>
+                                  <tr>
+                                    <td valign="top">
+                                      <table cellpadding="3" cellspacing="0" border="0" width="289">
+                                        <tbody>
+                                          <tr>
+                                            <td align="left" valign="top"><img src="./assets/trans.gif" width="205" height="1" border="0" alt=""></td>
+                                            <td align="left" valign="top"><img src="./assets/trans.gif" width="25" height="1" border="0" alt=""></td>
+                                            <td align="left" valign="top"><img src="./assets/trans.gif" width="30" height="1" border="0" alt=""></td>
+                                          </tr>
+
+                                          {% for item in top_poly %}
+                                          <tr>
+                                            <td align="left" valign="middle" class="text">{{ '%05d'|format(item.id) }}. <a class="cntb" href="/{{ item.type }}/details/{{ '%05d'|format(item.id) }}">{{ item.name }}</a></td>
+                                            <td align="center" valign="middle"><a class="cntb" href="javascript:play_midi('/{{ item.type }}/preview/{{ '%05d'|format(item.id) }}')"><img src="./assets/rt_icon.gif" border="0" alt="Probehören" title="Probehören"></a></td>
+                                            <td align="left" valign="middle"><a class="cnt" href="/{{ item.type }}/details/{{ '%05d'|format(item.id) }}"><img src="./assets/aufshandy_icon.gif" border="0" alt="Auf's Handy" title="Auf's Handy"></a></td>
+                                          </tr>
+                                          {% endfor %}
+                                          <tr>
+                                            <td colspan="3"><img src="./assets/trans.gif" width="1" height="9" border="0" alt=""></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <table cellpadding="0" cellspacing="0" border="0" width="289">
+                                        <tbody>
+                                          <tr>
+                                            <td><img src="./assets/trans.gif" width="10" height="25" border="0" alt=""></td>
+                                            <td valign="top"><a class="more" href="/polyphonic-ring">Alle Klingeltöne zeigen!</a></td>
+                                          </tr>
+                                          <tr>
+                                            <td colspan="2"><img src="./assets/trans.gif" width="1" height="1" border="0" alt=""></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                    <td><img src="./assets/trans.gif" width="12" height="12" border="0" alt=""></td>
+                    <!--<td align="left" valign="top" width="291">
+                      <table cellpadding="0" cellspacing="0" border="0" width="291">
+                        <tbody>
+                          <tr>
+                            <td align="left" valign="baseline" width="221" class="headon">
+                              <table cellpadding="0" cellspacing="0" border="0" width="221">
+                                <tbody>
+                                  <tr>
+                                    <td height="17" class="headtop" width="5"><img src="./assets/trans.gif" width="5" height="1" border="0" alt=""></td>
+                                    <td class="headtop" align="left">
+                                      <a class="headlink" href="/">TOP HANDY SPIELE</a>
+                                    </td>
+                                    <td height="17" width="9" style="background-image:url(./assets/ecke_head.gif); background-repeat:no-repeat;"></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                            <td align="left" valign="top"><img src="./assets/trans.gif" width="9" height="17" border="0" alt=""></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table cellpadding="0" cellspacing="0" border="0" width="291" class="headtop">
+                        <tbody>
+                          <tr>
+                            <td class="headtop"><img src="./assets/trans.gif" width="1" height="1" border="0" alt=""></td>
+                          </tr>
+                          <tr>
+                            <td align="center" valign="top">
+                              <table cellpadding="0" cellspacing="0" border="0" width="289" class="whiteline">
+                                <tbody>
+                                  <tr>
+                                    <td><img src="./assets/trans.gif" width="20" height="11" border="0" alt=""></td>
+                                  </tr>
+                                  <tr>
+                                    <td valign="top" height="136">
+                                      <table cellpadding="0" cellspacing="0" border="0" width="289">
+                                        <tbody>
+                                          <tr>
+                                            <td><img src="./assets/trans.gif" width="10" height="0" border="0" alt=""></td>
+                                            <td height="137" valign="top" align="center">
+                                              <table cellpadding="0" cellspacing="0" border="0" style="background-image:url(/web/20050428082332im_/http://www.jamba.de/s/dew/img/handy.gif); background-repeat:no-repeat;" width="130">
+                                                <tbody>
+                                                  <tr>
+                                                    <td><img src="./assets/trans.gif" width="0" height="14" border="0" alt=""></td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><img src="./assets/trans.gif" width="15" height="0" border="0" alt=""></td>
+                                                    <td><a href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/selectDocument.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;&amp;contentType=12&amp;doc=1616740&amp;title=Wer%20Wird%20Million%E4r"><img src="./assets/WhoWantsToBeAMillionaire4111.jpg" width="100" height="100" border="0" alt=""></a></td>
+                                                    <td><img src="./assets/trans.gif" width="9" height="0" border="0" alt=""></td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><img src="./assets/trans.gif" width="0" height="20" border="0" alt=""></td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                              <table cellpadding="0" cellspacing="0" border="0" width="107">
+                                                <tbody>
+                                                  <tr>
+                                                    <td align="center" height="10"><a class="cntb" href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/selectDocument.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;&amp;contentType=12&amp;doc=1616740&amp;title=Wer%20Wird%20Million%E4r">Wer Wird Millionär</a></td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </td>
+                                            <td height="137" valign="top" align="center">
+                                              <table cellpadding="0" cellspacing="0" border="0" style="background-image:url(/web/20050428082332im_/http://www.jamba.de/s/dew/img/handy.gif); background-repeat:no-repeat;" width="130">
+                                                <tbody>
+                                                  <tr>
+                                                    <td><img src="./assets/trans.gif" width="0" height="14" border="0" alt=""></td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><img src="./assets/trans.gif" width="15" height="0" border="0" alt=""></td>
+                                                    <td><a href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/selectDocument.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;&amp;contentType=12&amp;doc=1729855&amp;title=Worms%AE%20Forts"><img src="./assets/Monopoly_Tycoon.gif" width="100" height="100" border="0" alt=""></a></td>
+                                                    <td><img src="./assets/trans.gif" width="9" height="0" border="0" alt=""></td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><img src="./assets/trans.gif" width="0" height="20" border="0" alt=""></td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                              <table cellpadding="0" cellspacing="0" border="0" width="107">
+                                                <tbody>
+                                                  <tr>
+                                                    <td align="center" height="10"><a class="cntb" href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/selectDocument.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;&amp;contentType=12&amp;doc=1729855&amp;title=Worms%AE%20Forts">Monopoly Tycoon</a></td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </td>
+                                            <td><img src="./assets/trans.gif" width="10" height="0" border="0" alt=""></td>
+                                          </tr>
+                                          <tr>
+                                            <td align="left" valign="top" colspan="3"><img src="./assets/trans.gif" width="1" height="8" border="0" alt=""></td>
+                                          </tr>
+                                          <tr>
+                                            <td><img src="./assets/trans.gif" width="1" height="1" border="0" alt=""></td>
+                                            <td align="left" valign="top" colspan="2"><a class="more" href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/selectContentType.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;contentType=12">Alle Spiele zeigen!</a></td>
+                                          </tr>
+                                          <tr>
+                                            <td align="left" valign="top" colspan="3"><img src="./assets/trans.gif" width="1" height="8" border="0" alt=""></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="headtop"><img src="./assets/trans.gif" width="1" height="1" border="0" alt=""></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>-->
+              <table cellpadding="0" cellspacing="0" border="0" width="594">
+                <tbody>
+                  <tr>
+                    <td align="left" valign="top" colspan="3"><img src="./assets/trans.gif" width="1" height="12" border="0" alt=""></td>
+                  </tr>
+                  <tr>
+                    <td align="left" valign="baseline" width="221" class="headon">
+                      <table cellpadding="0" cellspacing="0" border="0" width="221">
+                        <tbody>
+                          <tr>
+                            <td height="17" class="headtop" width="5"><img src="./assets/trans.gif" width="5" height="1" border="0" alt=""></td>
+                            <td class="headtop" align="left">
+                              <a class="headlink" href="/">TOP FARBIGE LOGOS</a>
+                            </td>
+                            <td height="17" width="9" style="background-image:url(./assets/ecke_head.gif); background-repeat:no-repeat;"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                    <td align="left" valign="top"><img src="./assets/trans.gif" width="9" height="17" border="0" alt=""></td>
+                  </tr>
+                  <tr>
+                    <td align="left" valign="top" colspan="7">
+                      <table cellpadding="1" cellspacing="0" border="0" width="594" class="headtop">
+                        <tbody>
+                          <tr>
+                            <td valign="top">
+                              <table cellpadding="0" cellspacing="0" border="0" width="592" class="whiteline">
+                                <tbody>
+                                  <tr>
+                                    <td colspan="7"><img src="./assets/trans.gif" width="1" height="5" border="0" alt=""></td>
+                                  </tr>
+                                  <tr>
+                                    <td><img src="./assets/trans.gif" width="11" height="0" border="0" alt=""></td>
+
+                                    {% for item in top_bitmap %}
+                                    <td valign="top">
+                                      <table cellpadding="0" cellspacing="0" border="0" width="100">
+                                        <tbody>
+                                          <tr>
+                                            <td colspan="3"><img src="./assets/trans.gif" width="0" height="5" border="0" alt=""></td>
+                                          </tr>
+                                          <tr>
+                                            <td><img src="./assets/trans.gif" width="3" height="0" border="0" alt=""></td>
+                                            <td align="center"><a class="imgLink" href="/{{ item.type }}/details/{{ '%05d'|format(item.id) }}"><img src="/{{ item.type }}/preview/{{ '%05d'|format(item.id) }}" width="104" height="104" class="imgBorder" alt=""></a></td>
+                                            <td><img src="./assets/trans.gif" width="3" height="0" border="0" alt=""></td>
+                                          </tr>
+                                          <tr>
+                                            <td colspan="3"><img src="./assets/trans.gif" width="0" height="5" border="0" alt=""></td>
+                                          </tr>
+                                          <tr>
+                                            <td><img src="./assets/trans.gif" width="3" height="0" border="0" alt=""></td>
+                                            <td align="center"><a class="cntb" href="/{{ item.type }}/details/{{ '%05d'|format(item.id) }}">{{ item.name }}</a></td>
+                                            <td><img src="./assets/trans.gif" width="3" height="0" border="0" alt=""></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                    {% endfor %}
+
+                                    <td><img src="./assets/trans.gif" width="1" height="0" border="0" alt=""></td>
+                                  </tr>
+                                  <tr>
+                                    <td align="left" valign="top" colspan="7"><img src="./assets/trans.gif" width="1" height="5" border="0" alt=""></td>
+                                  </tr>
+                                  <tr>
+                                    <td align="left" valign="top"><img src="./assets/trans.gif" width="11" height="1" border="0" alt=""></td>
+                                    <td align="left" valign="top" colspan="6"><a class="more" href="/bitmap">Alle farbigen Logos zeigen!</a></td>
+                                  </tr>
+                                  <tr>
+                                    <td align="left" valign="top" colspan="7"><img src="./assets/trans.gif" width="1" height="5" border="0" alt=""></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table cellpadding="0" cellspacing="0" border="0" width="594">
+                <tbody>
+                  <tr>
+                    <td align="left" valign="top" colspan="3"><img src="./assets/trans.gif" width="1" height="12" border="0" alt=""></td>
+                  </tr>
+                  <tr>
+                    <td align="left" valign="baseline" width="221" class="headon">
+                      <table cellpadding="0" cellspacing="0" border="0" width="221">
+                        <tbody>
+                          <tr>
+                            <td height="17" class="headtop" width="5"><img src="./assets/trans.gif" width="5" height="1" border="0" alt=""></td>
+                            <td class="headtop" align="left">
+                              <a class="headlink" href="">TOP BETREIBERLOGOS</a>
+                            </td>
+                            <td height="17" width="9" style="background-image:url(./assets/ecke_head.gif); background-repeat:no-repeat;"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                    <td align="left" valign="top"><img src="./assets/trans.gif" width="9" height="17" border="0" alt=""></td>
+                  </tr>
+                  <tr>
+                    <td align="center" valign="top" colspan="3">
+                      <table cellpadding="1" cellspacing="0" border="0" width="594" class="headtop">
+                        <tbody>
+                          <tr>
+                            <td valign="top">
+                              <table cellpadding="0" cellspacing="0" border="0" width="592" class="whiteline">
+                                <tbody>
+                                  <tr>
+                                    <td colspan="7"><img src="./assets/trans.gif" width="1" height="5" border="0" alt=""></td>
+                                  </tr>
+                                  <tr>
+                                    <td valign="top" height="130">
+                                      <table cellpadding="4" cellspacing="0" border="0" width="592">
+                                        <tbody>
+                                            {% for item in top_operator %}
+                                              {% if (loop.index0 % 3) == 0 %}
+                                              <tr>
+                                              {% endif %}
+                                            <td align="left" valign="middle" class="text"><a class="cntb" href="/{{ item.type }}/details/{{ '%05d'|format(item.id) }}"><img src="/{{ item.type }}/preview/{{ '%05d'|format(item.id) }}" height="36" class="img-nearest"></a></td>
+                                              {% if (loop.index0 % 3) == 2 %}
+                                              </tr>
+                                              {% endif %}
+                                            {% endfor %}
+                                        </tbody>
+                                      </table>
+                                      <table cellpadding="0" cellspacing="0" border="0" width="592">
+                                        <tbody>
+                                          <tr>
+                                            <td valign="bottom" height="20"><img src="./assets/trans.gif" width="20" height="1" border="0" alt=""><a class="more" href="/operator-logo/">Alle Betreiberlogos zeigen!</a></td>
+                                          </tr>
+                                          <tr>
+                                            <td align="left" valign="top"><img src="./assets/trans.gif" width="1" height="5" border="0" alt=""></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!--<table cellpadding="0" cellspacing="0" border="0" width="594" bgcolor="#ffffff">
+                <tbody>
+                  <tr>
+                    <td colspan="3"><img src="./assets/trans.gif" width="1" height="12" border="0" alt=""></td>
+                  </tr>
+                  <tr>
+                    <td align="left" valign="top" width="291">
+                      <table cellpadding="0" cellspacing="0" border="0" width="291">
+                        <tbody>
+                          <tr>
+                            <td align="left" valign="baseline" width="221" class="headon">
+                              <table cellpadding="0" cellspacing="0" border="0" width="221">
+                                <tbody>
+                                  <tr>
+                                    <td height="17" class="headtop" width="5"><img src="./assets/trans.gif" width="5" height="1" border="0" alt=""></td>
+                                    <td class="headtop" align="left">
+                                      <a class="headlink" href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/selectContentType.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;contentType=19">TOP MMS-INFODIENSTE</a>
+                                    </td>
+                                    <td height="17" width="9" style="background-image:url(./assets/ecke_head.gif); background-repeat:no-repeat;"></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                            <td align="left" valign="top"><img src="./assets/trans.gif" width="9" height="17" border="0" alt=""></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table cellpadding="0" cellspacing="0" border="0" width="291" class="headtop">
+                        <tbody>
+                          <tr>
+                            <td class="headtop"><img src="./assets/trans.gif" width="1" height="1" border="0" alt=""></td>
+                          </tr>
+                          <tr>
+                            <td align="center" valign="top">
+                              <table cellpadding="0" cellspacing="0" border="0" width="289" class="whiteline">
+                                <tbody>
+                                  <tr>
+                                    <td><img src="./assets/trans.gif" width="1" height="6" border="0" alt=""></td>
+                                  </tr>
+                                  <tr>
+                                    <td valign="top" height="160">
+                                      <table cellpadding="4" cellspacing="0" border="0" width="289">
+                                        <tbody>
+                                          <tr>
+                                            <td valign="top">
+                                              <table cellpadding="0" cellspacing="0" border="0">
+                                                <tbody>
+                                                  <tr>
+                                                    <td>
+                                                      <a class="imgLink" href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/selectDocument.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;contentType=19&amp;title=Formel%201" title="Formel 1"><img src="./assets/F1_jamba-03.gif" class="imgBorder" alt="Formel 1" height="64" width="85"></a>
+                                                    </td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td align="center">
+                                                      <a class="cntb" href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/selectDocument.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;contentType=19&amp;title=Formel%201" title="Formel 1">Formel 1</a>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </td>
+                                            <td valign="top">
+                                              <table cellpadding="0" cellspacing="0" border="0">
+                                                <tbody>
+                                                  <tr>
+                                                    <td>
+                                                      <a class="imgLink" href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/selectDocument.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;contentType=19&amp;title=World-News" title="World-News"><img src="./assets/WorldNews_2.jpg" class="imgBorder" alt="World-News" height="64" width="85"></a>
+                                                    </td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td align="center">
+                                                      <a class="cntb" href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/selectDocument.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;contentType=19&amp;title=World-News" title="World-News">World-News</a>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </td>
+                                            <td valign="top">
+                                              <table cellpadding="0" cellspacing="0" border="0">
+                                                <tbody>
+                                                  <tr>
+                                                    <td>
+                                                      <a class="imgLink" href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/selectDocument.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;contentType=19&amp;title=Pin-Up%20des%20Tages" title="Pin-Up des Tages"><img src="./assets/web_teaser.jpg" class="imgBorder" alt="Pin-Up des Tages" height="64" width="85"></a>
+                                                    </td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td align="center">
+                                                      <a class="cntb" href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/selectDocument.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;contentType=19&amp;title=Pin-Up%20des%20Tages" title="Pin-Up des Tages">Pin-Up des Tages</a>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <table cellpadding="0" cellspacing="0" border="0" width="289">
+                                        <tbody>
+                                          <tr>
+                                            <td valign="bottom" height="34"><img src="./assets/trans.gif" width="34" height="1" border="0" alt=""><a class="more" href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/selectContentType.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;contentType=19">Alle MMS-Infokanäle zeigen!</a></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="headtop"><img src="./assets/trans.gif" width="1" height="1" border="0" alt=""></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                    <td><img src="./assets/trans.gif" width="12" height="12" border="0" alt=""></td>
+                    <td align="left" valign="top" width="291">
+                      <table cellpadding="0" cellspacing="0" border="0" width="291">
+                        <tbody>
+                          <tr>
+                            <td align="left" valign="baseline" width="221" class="headon">
+                              <table cellpadding="0" cellspacing="0" border="0" width="221">
+                                <tbody>
+                                  <tr>
+                                    <td height="17" class="headtop" width="5"><img src="./assets/trans.gif" width="5" height="1" border="0" alt=""></td>
+                                    <td class="headtop" align="left">
+                                      <a class="headlink" href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/search/searchContent.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;keywords=Blåmba%20Stars&amp;displayName=Die%20Blåmba!%20STARS&amp;display=overview">Die Blåmba! STARS</a>
+                                    </td>
+                                    <td height="17" width="9" style="background-image:url(./assets/ecke_head.gif); background-repeat:no-repeat;"></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                            <td align="left" valign="top"><img src="./assets/trans.gif" width="9" height="17" border="0" alt=""></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table cellpadding="0" cellspacing="0" border="0" width="291" class="headtop">
+                        <tbody>
+                          <tr>
+                            <td class="headtop"><img src="./assets/trans.gif" width="1" height="1" border="0" alt=""></td>
+                          </tr>
+                          <tr>
+                            <td align="center" valign="top">
+                              <table cellpadding="0" cellspacing="0" border="0" width="289" class="whiteline">
+                                <tbody>
+                                  <tr>
+                                    <td><img src="./assets/trans.gif" width="1" height="6" border="0" alt=""></td>
+                                  </tr>
+                                  <tr>
+                                    <td align="center" valign="top" width="289" height="160">
+                                      <table cellpadding="0" cellspacing="0" border="0" width="289">
+                                        <tbody>
+                                          <tr>
+                                            <td valign="bottom" align="center" height="88"><a class="imgLink" href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/search/searchContent.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;keywords=Ratte%20Lenny&amp;display=overview"><img class="imgBorder" src="./assets/funteaser_lenny.jpg" border="0" alt="Fun für&#39;s Handy!"></a></td>
+                                            <td><img src="./assets/trans.gif" width="5" height="6" border="0" alt=""></td>
+                                            <td valign="bottom" align="center" height="88"><a class="imgLink" href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/search/searchContent.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;keywords=Spike&amp;displayname=Rhino%20Spike&amp;display=overview"><img class="imgBorder" src="./assets/funteaser_rhino.jpg" border="0" alt="Fun für&#39;s Handy!"></a></td>
+                                            <td><img src="./assets/trans.gif" width="5" height="6" border="0" alt=""></td>
+                                            <td valign="bottom" align="center" height="88"><a class="imgLink" href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/search/searchContent.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;keywords=Smash&amp;displayname=Ratte%20Smash&amp;display=overview"><img class="imgBorder" src="./assets/funteaser_ratte.jpg" border="0" alt="Fun für&#39;s Handy!"></a></td>
+                                          </tr>
+                                          <tr>
+                                            <td valign="bottom" class="text">&nbsp;<a class="cntb" href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/search/searchContent.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;keywords=Ratte%20Lenny&amp;display=overview">Ratte Lenny</a></td>
+                                            <td><img src="./assets/trans.gif" width="5" height="6" border="0" alt=""></td>
+                                            <td valign="bottom" class="text">&nbsp;<a class="cntb" href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/search/searchContent.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;keywords=Spike&amp;displayname=Rhino%20Spike&amp;display=overview">Rhino Spike</a></td>
+                                            <td><img src="./assets/trans.gif" width="5" height="6" border="0" alt=""></td>
+                                            <td valign="bottom" class="text">&nbsp;<a class="cntb" href="https://web.archive.org/web/20050428082332/http://www.jamba.de/dew/search/searchContent.do?jhs=279&amp;XY=QnCdgz21I5|5540792128801928351/168428306/6/7001/7001/7002/7002/7001/-1&amp;keywords=Smash&amp;displayname=Ratte%20Smash&amp;display=overview">Ratte Smash</a></td>
+                                          </tr>
+                                          <tr>
+                                            <td colspan="5" height="10"></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="headtop"><img src="./assets/trans.gif" width="1" height="1" border="0" alt=""></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" align="left" valign="top"><img src="./assets/trans.gif" height="40" border="0" alt=""></td>
+                  </tr>
+                </tbody>
+              </table>-->
+{% endblock %}

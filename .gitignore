@@ -1,3 +1,10 @@
 original-file.html
 assets/
 .DS_Store
+vendor/
+composer.phar
+.Makefile.swp
+*.o
+vendor-native/bwrap-seccomp/seccomp.bpf
+vendor-native/bwrap-seccomp/genseccomp
+vendor-native/ringtonetools/ringtonetools

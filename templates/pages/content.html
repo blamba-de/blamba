@@ -1,0 +1,99 @@
+{% extends "template.html" %}
+
+{% block head %}
+	{{ parent() }}
+{% endblock %}
+{% block content %}
+<table cellpadding="0" cellspacing="0" border="0" width="502">
+	<tbody>
+		<tr>
+			<td align="left" valign="baseline" width="221">
+				<table cellpadding="0" cellspacing="0" border="0" width="221">
+					<tbody>
+						<tr>
+							<td height="17" class="headtop" width="5"><img src="./assets/trans.gif" width="5" height="1" border="0" alt=""></td>
+							<td class="headtop" align="left">
+								<a class="headlink" href="/">{{type_human}}</a>
+							</td>
+							<td height="17" width="9" style="background-image:url(./assets/ecke_head.gif); background-repeat:no-repeat;"></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+			<td align="left" valign="top"><img src="./assets/trans.gif" width="9" height="17" border="0" alt=""></td>
+		</tr>
+	</tbody>
+</table>
+
+<table cellpadding="1" cellspacing="0" border="0" width="502" class="headtop">
+	<tbody>
+		<tr>
+			<td align="center" valign="top">
+				<table cellpadding="0" cellspacing="0" border="0" width="500" height="148" class="whiteline">
+					<tbody>
+						<tr>
+							<td valign="top">
+
+								<table cellpadding="3" cellspacing="0" border="0" width="500">
+									<tbody>
+										<tr>
+											<td align="left" valign="top"><img src="./assets/trans.gif" width="205" height="1" border="0" alt=""></td>
+											<td align="left" valign="top"><img src="./assets/trans.gif" width="25" height="1" border="0" alt=""></td>
+											<td align="left" valign="top"><img src="./assets/trans.gif" width="30" height="1" border="0" alt=""></td>
+										</tr>
+
+										{% for item in content %}
+										{% if item.type == "rtttl" or item.type == "polyphonic-ring" %}
+										<tr>
+											<td align="left" valign="middle" class="text">{{ '%05d'|format(item.id) }}. <a class="cntb" href="/{{ type }}/details/{{ '%05d'|format(item.id) }}">{{ item.name }}</a></td>
+											<td align="center" valign="middle"><a class="cntb" href="javascript:play_midi('/{{ type }}/preview/{{ '%05d'|format(item.id) }}')"><img src="./assets/rt_icon.gif" border="0" alt="Probehören" title="Probehören"></a></td>
+											<td align="left" valign="middle"><a class="cnt" href="/{{ type }}/details/{{ '%05d'|format(item.id) }}"><img src="./assets/aufshandy_icon.gif" border="0" alt="Auf's Handy" title="Auf's Handy"></a></td>
+										</tr>
+										{% endif %}
+
+										{% if item.type == "bitmap" %}
+										{% if (loop.index0 % 2) == 0 %}
+                                        <tr>
+                                        {% endif %}
+											<td align="center" valign="middle">
+												{{ '%05d'|format(item.id) }}. <a class="cntb" href="/{{ type }}/details/{{ '%05d'|format(item.id) }}">{{ item.name }}<br>
+												<img src="/{{ type }}/preview/{{ '%05d'|format(item.id) }}" height="208"></a>
+											</td>
+											<td align="left" valign="middle"><a class="cnt" href="/{{ type }}/details/{{ '%05d'|format(item.id) }}"><img src="./assets/aufshandy_icon.gif" border="0" alt="Auf's Handy" title="Auf's Handy"></a></td>
+										{% if (loop.index0 % 2) == 1 %}
+										</tr>
+										{% endif %}
+										{% endif %}
+
+										{% if item.type == "operator-logo" %}
+										<tr>
+											<td align="left" valign="middle" class="text">{{ '%05d'|format(item.id) }}. <a class="cntb" href="/{{ type }}/details/{{ '%05d'|format(item.id) }}">{{ item.name }}</a></td>
+											<td align="center" valign="middle">
+												<img src="/{{ type }}/preview/{{ '%05d'|format(item.id) }}" height="42" class="img-nearest">
+											</td>
+											<td align="left" valign="middle"><a class="cnt" href="/{{ type }}/details/{{ '%05d'|format(item.id) }}"><img src="./assets/aufshandy_icon.gif" border="0" alt="Auf's Handy" title="Auf's Handy"></a></td>
+										</tr>
+										{% endif %}
+
+
+										{% else %}
+											<tr>
+												<td colspan="3">Bisher keine eingepflegt. Das kann ja noch werden...</td>
+											</tr>
+										{% endfor %}
+
+										<tr>
+											<td colspan="3"><img src="./assets/trans.gif" width="1" height="9" border="0" alt=""></td>
+										</tr>
+									</tbody>
+								</table>
+
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+{% endblock %}

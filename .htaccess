@@ -1,0 +1,25 @@
+
+# Deny access to hidden files - files that start with a dot (.)
+<FilesMatch "^\.">
+Order allow,deny
+Deny from all
+</FilesMatch>
+
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^/]*)$ /index.php?page=$1 [L]
+RewriteRule ^([^/]*)/$ /index.php?page=$1 [L]
+RewriteRule ^([^/]*)/details/([0-9]*)$ /index.php?page=content-details&id=$2 [L]
+RewriteRule ^([^/]*)/download/([0-9]*)$ /media.php?type=download&id=$2 [L]
+RewriteRule ^([^/]*)/preview/([0-9]*)$ /media.php?type=preview&id=$2 [L]
+
+
+# AuthType Basic
+# AuthName "Login"
+# AuthUserFile .htpasswd
+# Require valid-user
+# Satisfy All
+#
+

@@ -1,0 +1,47 @@
+{% extends "template.html" %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+<p>
+    <b>Was ist das?</b><br>
+    Ein Klingelton-Anbieter, angelehnt an die bekannten Anbieter aus den frühen 2000ern.
+</p>
+<p>
+    <b>Ist das echt?</b><br>
+    Ja! Wenn du ein unterstütztes Mobiltelefon hast, kannst du die Inhalte links im Menü direkt auf dein Handy schicken lassen.
+</p>
+<p>
+    <b>Wo funktioniert das?</b><br>
+    Blåmba braucht eine Methode um rohe SMS direkt an Teilnehmer*innen zu verschicken. Ohne Kostenaufwand funktioniert das leider nur in privaten Netzen, wie z.B. beim Chaos Communication Camp 2023.
+</p>
+<p>
+    <b>Wer würde sowas programmieren?</b><br>
+    <a href="https://chaos.social/@manawyrm" target="_blank">@manawyrm@chaos.social</a>
+</p>
+<p>
+    <b>Kostet das wirklich Geld?</b><br>
+    Nein, aber das hält die Kolleg*innen von eventphone bestimmt nicht davon ab, dir trotzdem eine Rechnung zu schreiben :D
+</p>
+
+<p>
+    <b>Welche Handys werden unterstützt?</b><br>
+    Bei der Entwicklung getestet wurden Nokia 6310i und Nokia 6220. <br>
+    Viele ähnliche Telefone von Nokia sollten auch funktionieren. <br>
+    Andere Hersteller (Sony Ericsson, etc.) sind mangels Telefonen nicht implementiert.
+    Falls du ein passendes hast und weisst, wie die Datenübertragung funktionieren kann, <a href="https://chaos.social/@manawyrm" target="_blank">melde dich bitte!</a>
+</p>
+<p>
+    <b>Wie funktioniert das technisch?</b><br>
+    Betreiberlogos und RTTTL-Klingeltöne werden <a href="https://en.wikipedia.org/wiki/User_Data_Header" target="_blank">per SMS versendet</a>.<br>
+    MIDI-Dateien, J2ME-Anwendungen und Spiele werden per <a href="https://de.wikipedia.org/wiki/WAP-Push" target="_blank">WAP-Push</a> (quasi Link per SMS) versendet.<br>
+    Der Sourcecode ist links im Menü verlinkt.
+</p>
+<p>
+    <b>Ich habe eine coole Grafik/Klingelton/etc.</b><br>
+    Super! Stell bitte einen Pull-Request auf dem <a href="https://github.com/manawyrm/blamba-content" target="_blank">blamba-content Repository</a>.
+</p>
+
+
+{% endblock %}

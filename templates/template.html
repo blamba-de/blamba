@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		{{ include('header.html') }}
+	</head>
+	<body>
+		<div align="center">
+			<table cellpadding="0" cellspacing="0" border="0" width="770">
+				<tbody>
+					<tr>
+						<td align="left" valign="top" width="164" class="bgHellBlau">
+							{{ include('menu.html') }}
+						</td>
+						<td><img src="./assets/trans.gif" width="12" height="1" border="0" alt=""></td>
+						<td align="left" valign="top" width="594">
+							<table cellpadding="0" cellspacing="0" border="0" width="594">
+								<tbody>
+									<tr>
+										<td>
+											<table cellpadding="0" cellspacing="0" border="0" width="500">
+												<tbody>
+													<tr>
+														<td valign="middle" class="headtext">
+															Klingeltöne, Handylogos, J2ME-Spiele!<br>
+															Jetzt im Blåmba-Sparabo für nur 4,99€!<br>
+															<midi-player src="" visualizer="#mainVisualizer" id="midiplayer" style="display: none;"></midi-player>
+															<!--<midi-visualizer type="piano-roll" id="mainVisualizer"></midi-visualizer>-->
+														</td>
+														<td valign="bottom" class="headtext">
+															<img src="./assets/blahaj-large.png" height="100" align="right">
+														</td>
+													</tr>
+												</tbody>
+											</table>
+
+
+
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							{% block content %}{% endblock %}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			{{ include('footerads.html') }}
+			<table cellpadding="0" cellspacing="0" border="0" width="770">
+				<tbody>
+					<tr>
+						<td>
+							<span class="text_small"></span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
