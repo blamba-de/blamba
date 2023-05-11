@@ -603,7 +603,7 @@ int t;
     }
   }
     else
-  { in=fdopen(STDIN_FILENO,"r"); }
+  { in=fdopen(fileno(stdin),"r"); }
 
   if (rtt_info->outname[0]!='-')
   {
@@ -621,7 +621,7 @@ int t;
     { out=0; }
   }
     else
-  { out=fdopen(STDOUT_FILENO,"wb+"); }
+  { out=fdopen(fileno(stdout),"w"); }
 
   if (!(rtt_info->in_type==RTT_TYPE_BMP || rtt_info->in_type==RTT_TYPE_TEXT) && rtt_info->out_type==RTT_TYPE_EMS)
   {

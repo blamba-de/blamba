@@ -1,8 +1,18 @@
-
 #DEBUG = -DDEBUG
 CC = gcc
-WARN = -Wall
-FLAGS = $(DEBUG) -O2
+
+# static build, we want to run a sandbox later
+WARN = -static
+
+# from https://github.com/ossf/wg-best-practices-os-developers/blob/main/docs/Compiler_Hardening_Guides/Compiler-Options-Hardening-Guide-for-C-and-C%2B%2B.md
+FLAGS = $(DEBUG) -O2 -Wall -Wformat=2 -Wtrampolines \
+-D_FORTIFY_SOURCE=3 \
+-D_GLIBCXX_ASSERTIONS \
+-fstack-clash-protection -fstack-protector-strong \
+-Wl,-z,nodlopen -Wl,-z,nodump -Wl,-z,noexecstack -Wl,-z,noexecheap \
+-Wl,-z,relro -Wl,-z,now \
+-fPIE -pie -fPIC -shared
+
 #DSP = -DDSP
 #WINDOWS = -DWINDOWS -lwinmm
 

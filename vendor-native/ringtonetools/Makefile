@@ -5,17 +5,14 @@ all:
 	@cd src && make
 	@if [ -e src/ringtonetools.exe ]; then mv src/ringtonetools.exe ringtonetools.exe; fi
 	@if [ -e src/ringtonetools ]; then mv src/ringtonetools .; fi
-	@strip ringtonetools*
 
 dll:
 	@cd src && make dll
 	@if [ -e src/ringtonetools.dll ]; then mv src/ringtonetools.dll .; fi
-	@strip ringtonetools*
 
 lib:
 	@cd src && make lib
 	@if [ -e src/ringtonetools.so ]; then mv src/ringtonetools.so .; fi
-	@strip ringtonetools*
 
 
 clean:
