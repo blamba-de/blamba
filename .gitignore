@@ -5,6 +5,8 @@ vendor/
 composer.phar
 .Makefile.swp
 *.o
-vendor-native/bwrap-seccomp/seccomp.bpf
-vendor-native/bwrap-seccomp/genseccomp
 vendor-native/ringtonetools/ringtonetools
+vendor-native/bwrap-seccomp/genseccomp-imagemagick
+vendor-native/bwrap-seccomp/genseccomp-ringtonetools
+vendor-native/bwrap-seccomp/seccomp-imagemagick.bpf
+vendor-native/bwrap-seccomp/seccomp-ringtonetools.bpf

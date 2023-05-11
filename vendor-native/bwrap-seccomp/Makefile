@@ -1,9 +1,14 @@
 all: build generate
 
 build:
-	gcc -lseccomp -o genseccomp genseccomp.c
+	gcc -lseccomp -o genseccomp-imagemagick genseccomp-imagemagick.c
+	gcc -lseccomp -o genseccomp-ringtonetools genseccomp-ringtonetools.c
+
 generate: build
-	./genseccomp > seccomp.bpf
+	./genseccomp-imagemagick > seccomp-imagemagick.bpf
+	./genseccomp-ringtonetools > seccomp-ringtonetools.bpf
 clean:
-	rm -f seccomp.bpf
-	rm -f genseccomp
+	rm -f seccomp-ringtonetools.bpf
+	rm -f genseccomp-ringtonetools
+	rm -f seccomp-imagemagick.bpf
+	rm -f genseccomp-imagemagick
