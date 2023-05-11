@@ -1,0 +1,27 @@
+
+EXPORTS
+  rtt_init_info
+  rtt_convert
+  rtt_info_alloc
+  rtt_info_free
+
+  rtt_set_logo_dims
+  rtt_set_types
+  rtt_set_tempo
+  rtt_set_name
+  rtt_set_pause
+  rtt_set_wav_options
+  rtt_set_mcc_mnc
+  rtt_transpose
+  rtt_set_sms_size
+  rtt_set_volume
+  rtt_set_header_options
+
+  rtt_get_outtype
+  rtt_get_intype
+  rtt_add_extension_to_file
+  rtt_convert
+  rtt_set_filenames
+
+  rtt_get_version
+

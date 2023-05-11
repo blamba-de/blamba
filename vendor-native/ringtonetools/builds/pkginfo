@@ -1,0 +1,10 @@
+PKG=KOHNmobl
+ARCH=sparc
+VERSION=2.19
+NAME=ringtonetools
+DESC=Create ringtones and logos for mobile phones
+CATEGORY=phone
+BASEDIR=/usr/local
+VENDOR=Michael A. Kohn
+EMAIL=mike@mikekohn.net
+

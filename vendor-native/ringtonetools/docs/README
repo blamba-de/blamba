@@ -1,0 +1,52 @@
+
+   NAME: Ringtonetools
+ AUTHOR: Michael Kohn
+  EMAIL: mike@mikekohn.net
+    WEB: http://ringtonetools.mikekohn.net/
+HOMPAGE: http://www.mikekohn.net/
+PURPOSE: Helps in the creation of ringtones
+
+-------------------------------------------------------------------
+
+NOTE:  For most up to date docs please read: 
+       http://ringtonetools.mikekohn.net/
+
+       I don't always update this file very well
+
+-------------------------------------------------------------------
+
+THIS MAY NOT BE USED IN COMMERCIAL ENVIRONMENTS WITHOUT
+PERMISSION OF THE AUTHOR.  PLEASE READ THE LICENSE.
+
+Usage: ringtonetools [ options ] <input filename> <output filename>
+       -intype <filename type> [ imelody/rtttl/rtx/midi/kws/bmp/text/siemens ]
+       -outtype <output type> [ wav/kws/mot/pdb/nokia/rtttl/samsung1/samsung2/siemens]
+       -name <song name>
+       -t <tempo [default: 140]>
+   iMelody options:
+       -a [force ringtonetools to ignore @'s in imelody's]
+   Kyeocera options:
+       -pause <number of quarter notes added [ default: 2  ]>
+   Motorola options:
+       -keypress [ Make keypress sequence for phones like v60t ]
+   wav output options:
+       -b <bits 8 or 16 for wav only [default: 16]>
+       -f <sampling frequency for wav only [default: 44100]>
+   logo options:
+       -h <height> [ Height of Logo (default 14) ]
+       -w <width> [ Width of Logo (default 72) ]
+       -l <MCC> <MNC> [ Operator Logo (requires MCC and MNC) ]
+       -m <message> Send a picture message
+       -r [ reverse black n white ]
+       -ss Send as screensaver
+   nokia options:
+       -x [ exclude //SCKL header ]
+       -u [ only user-data-header (8bit) ]
+       -k [ include user-data-header and //SCKL ]
+       -s <sms size> [ Maximum size of SMS message (default 140)
+       -transpose <pos or neg num > [ raise or lower song by n octaves ]
+   midi options:
+       -channel [ channel ]
+       -track [ track ]
+
+
