@@ -13,38 +13,47 @@ if (is_null($content))
 }
 
 if ($content['type'] == "rtttl" || $content['type'] == "polyphonic-ring")
-    $db->prepared_fetch_one("UPDATE content SET played = played + 1 WHERE `id` = ? AND `visible` = 1;", "i", $content['id']);
+    $db->prepared_query("UPDATE content SET played = played + 1 WHERE `id` = ? AND `visible` = 1;", "i", $content['id']);
 
 switch ($content['type'])
 {
     case 'rtttl':
-        if ($type == "preview")
+        if ($type == "preview" || $type == "wap")
         {
+            header('Content-Type: audio/midi');
             echo RTTTL::convert_to_midi($content_path . $content["path"]);
             exit;
         }
+        break;
     default:
-        download_file($content_path . $content["path"]);
+        download_file($content_path . $content["path"], false, $type);
         break;
 }
 
-function download_file($file, $mime = false)
+function download_file($file, $mime = false, $type = false)
 {
     if (file_exists($file))
     {
-        header('Content-Description: File Transfer');
-        if ($mime !== false)
+        if ($type == "wap")
         {
-            header('Content-Type: ' . $mime);
+            header('Content-Type: ' . mime_content_type($file));
         }
         else
         {
-            header('Content-Type: application/octet-stream');
+            header('Content-Description: File Transfer');
+            if ($mime !== false)
+            {
+                header('Content-Type: ' . $mime);
+            }
+            else
+            {
+                header('Content-Type: application/octet-stream');
+            }
+            header('Content-Disposition: attachment; filename="'.basename($file).'"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
         }
-        header('Content-Disposition: attachment; filename="'.basename($file).'"');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
         header('Content-Length: ' . filesize($file));
         readfile($file);
         exit;

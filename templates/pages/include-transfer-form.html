@@ -1,0 +1,59 @@
+<tr class="headtop">
+	<td height="1"></td>
+</tr>
+<form method="POST" action="/transfer">
+<tr>
+	<td colspan="3">
+		<table cellpadding="3" cellspacing="0" border="0" width="500">
+			<tr>
+				{% if devices|length == 0 %}
+					<td>
+						Bisher <a href="/register/">kein Endgerät angemeldet</a>!<br>
+						Schicke eine SMS mit "REGISTER {{ '%06d'|format(registration_token) }}" an die {{ config.smpp_sender_msn }}!
+					</td>
+				{% else %}
+					<td class="text"><label for="msn">verschicken an:</label></td>
+					<td align="left">
+						<select name="msn" id="msn">
+							{% for device in devices %}
+								<option value="{{ device.msn }}">{{ device.msn }}{% if device.type != null %} ({{ device.type }}){% endif %}</option>
+							{% endfor %}
+						</select>
+						<input type="hidden" value="{{ '%05d'|format(content.id) }}" name="contentid">
+						<input type="submit" value="Übertragen">
+					</td>
+				{% endif %}
+			</tr>
+			<tr>
+				{% if content.type == "rtttl" %}
+					<td class="text">Übertragungsart:</td>
+					<td align="left">
+						SMS (<a href="https://en.wikipedia.org/wiki/Smart_Messaging" target="_blank">Nokia Smart Messaging</a>, WDP Port 1581)
+					</td>
+				{% endif %}
+
+				{% if content.type == "operator-logo" %}
+					<td class="text">Übertragungsart:</td>
+					<td align="left">
+						SMS (<a href="https://en.wikipedia.org/wiki/Smart_Messaging" target="_blank">Nokia Smart Messaging</a>, WDP Port 1582)
+					</td>
+				{% endif %}
+
+
+				{% if content.type == "polyphonic-ring" %}
+					<td class="text">Übertragungsart:</td>
+					<td align="left">
+						WAP-Push (Dienstmitteilung)
+					</td>
+				{% endif %}
+				{% if content.type == "bitmap" %}
+					<td class="text">Übertragungsart:</td>
+					<td align="left">
+						WAP-Push (Dienstmitteilung)
+					</td>
+				{% endif %}
+			</tr>
+		</table>
+	</td>
+</tr>
+</form>

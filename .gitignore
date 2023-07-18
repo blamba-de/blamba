@@ -10,3 +10,5 @@ vendor-native/bwrap-seccomp/genseccomp-imagemagick
 vendor-native/bwrap-seccomp/genseccomp-ringtonetools
 vendor-native/bwrap-seccomp/seccomp-imagemagick.bpf
 vendor-native/bwrap-seccomp/seccomp-ringtonetools.bpf
+test*
+wap/

@@ -22,12 +22,18 @@ class BubblewrapSandbox
 		copy($infile, $workdir . "input");
 
 		$cmd = "timeout 10 bwrap --die-with-parent --seccomp 10 --new-session " . 
+				// Libraries (libpng, etc.)
 				"--ro-bind " . escapeshellarg($fakeroot_dir . "/lib/") . " /lib " .
 				"--ro-bind " . escapeshellarg($fakeroot_dir . "/lib64/") . " /lib64 " .
+				// ImageMagick config files (delegates.xml, etc.)
 				"--ro-bind " . escapeshellarg($fakeroot_dir . "/etc/ImageMagick-6/") . " /etc/ImageMagick-6 " .
+				// Symlink from /usr/bin/convert to /etc/alternatives
 				"--ro-bind " . escapeshellarg($fakeroot_dir . "/etc/alternatives/") . " /etc/alternatives " .
+				// actual ImageMagick binary
 				"--ro-bind " . escapeshellarg($fakeroot_dir . "/usr/bin/convert-im6.q16") . " /usr/bin/convert-im6.q16 " .
+				// ImageMagick symlink
 				"--ro-bind " . escapeshellarg($fakeroot_dir . "/usr/bin/convert") . " /usr/bin/convert " .
+				// ImageMagick modules (.so files)
 				"--ro-bind " . escapeshellarg($fakeroot_dir . "/usr/lib/x86_64-linux-gnu/ImageMagick-6.9.11") . " /usr/lib/x86_64-linux-gnu/ImageMagick-6.9.11 " .
 				"--bind " . escapeshellarg($workdir) . " /mnt --unshare-all " . $command;
 
@@ -79,7 +85,8 @@ class BubblewrapSandbox
 
 	function create_workdir()
 	{
-		$tempdir = "/dev/shm/blamba/";
+		global $config;
+		$tempdir = $config['tempdir'];
 		if (!file_exists($tempdir))
 		{
 			mkdir($tempdir);

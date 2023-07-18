@@ -13,7 +13,7 @@
 						<tr>
 							<td height="17" class="headtop" width="5"><img src="./assets/trans.gif" width="5" height="1" border="0" alt=""></td>
 							<td class="headtop" align="left">
-								<a class="headlink">Details - {{ content.name }}</a>
+								<a class="headlink">Übertragung - {{ content.name }}</a>
 							</td>
 							<td height="17" width="9" style="background-image:url(./assets/ecke_head.gif); background-repeat:no-repeat;"></td>
 						</tr>
@@ -44,60 +44,25 @@
 
 										<tr>
 											<table cellpadding="3" cellspacing="0" border="0" width="500">
+												
 												<tr>
-													<td class="text">Titel:</td>
-													<td>{{ content.name }}</td>
-												</tr>
-												<tr>
-													<td class="text">Autor:</td>
-													<td>{{ content.authorname }}</td>
-												</tr>
-												<tr>
-													<td class="text">Dateiname:</td>
-													<td>{{ file_basename }} ({{ file_size }} Bytes)</td>
-												</tr>
-												{% if content.type == "rtttl" or content.type == "polyphonic-ring" %}
-												<tr>
-													<td colspan="2">
-														<midi-visualizer type="piano-roll" id="mainVisualizer" style="width: 490px;"></midi-visualizer>
-														<script type="text/javascript">
-															load_midi("/{{ type }}/preview/{{ '%05d'|format(content.id) }}");
-														</script>
+													<td colspan="3">
+														Inhalt wird übermittelt!<br><br>
+
+														Technische Details: <br>
+														{{ smscount }} SMS-Nachricht(en), {{ smsbytes }} Bytes<br><br>
+
+														<textarea style="width: 490px; height: 200px;">{{ sms }}</textarea> <br><br>
+
+														<button onclick="history.back()">zurück zum Inhalt</button>
+														<button onclick="document.location = '/{{ content.type }}/'">zurück zur Übersicht</button>
 													</td>
 												</tr>
-												{% endif %}
-
-												{% if content.type == "rtttl" %}
-												<tr>
-													<td colspan="2">
-														RTTTL-Daten (Nokring):
-														<textarea style="width: 490px; height: 100px;">{{ rtttldata }}</textarea>
-													</td>
-												</tr>
-												{% endif %}
-
-												{% if content.type == "operator-logo" or content.type == "bitmap" %}
-												<tr>
-													<td colspan="2">
-														{% if content.type == "operator-logo" %}
-														<img src="/{{ type }}/preview/{{ '%05d'|format(content.id) }}" height="84" class="img-nearest">
-														{% endif %}
-
-														{% if content.type == "bitmap" %}
-														<img src="/{{ type }}/preview/{{ '%05d'|format(content.id) }}" height="208">
-														{% endif %}
-
-													</td>
-												</tr>
-												{% endif %}
 											</table>
 											<td align="left" valign="middle" class="text"></td>
 											<td align="center" valign="middle"></td>
 											<td align="left" valign="middle"></td>
 										</tr>
-
-										{{ include('pages/include-transfer-form.html') }}
-
 										<tr>
 											<td colspan="3"><img src="./assets/trans.gif" width="1" height="9" border="0" alt=""></td>
 										</tr>

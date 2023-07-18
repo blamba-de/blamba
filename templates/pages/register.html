@@ -1,0 +1,82 @@
+{% extends "template.html" %}
+
+{% block head %}
+	{{ parent() }}
+{% endblock %}
+{% block content %}
+<table cellpadding="0" cellspacing="0" border="0" width="502">
+	<tbody>
+		<tr>
+			<td align="left" valign="baseline" width="221">
+				<table cellpadding="0" cellspacing="0" border="0" width="221">
+					<tbody>
+						<tr>
+							<td height="17" class="headtop" width="5"><img src="./assets/trans.gif" width="5" height="1" border="0" alt=""></td>
+							<td class="headtop" align="left">
+								<a class="headlink" href="/">Angemeldete Geräte</a>
+							</td>
+							<td height="17" width="9" style="background-image:url(./assets/ecke_head.gif); background-repeat:no-repeat;"></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+			<td align="left" valign="top"><img src="./assets/trans.gif" width="9" height="17" border="0" alt=""></td>
+		</tr>
+	</tbody>
+</table>
+
+<table cellpadding="1" cellspacing="0" border="0" width="502" class="headtop">
+	<tbody>
+		<tr>
+			<td align="center" valign="top">
+				<table cellpadding="0" cellspacing="0" border="0" width="500" height="148" class="whiteline">
+					<tbody>
+						<tr>
+							<td valign="top">
+
+								<table cellpadding="3" cellspacing="0" border="0" width="500">
+									<tbody>
+										<tr>
+											<td align="left" valign="top"><img src="./assets/trans.gif" width="205" height="1" border="0" alt=""></td>
+											<td align="left" valign="top"><img src="./assets/trans.gif" width="25" height="1" border="0" alt=""></td>
+											<td align="left" valign="top"><img src="./assets/trans.gif" width="30" height="1" border="0" alt=""></td>
+										</tr>
+										<tr><td>Schicke eine SMS mit "REGISTER {{ '%06d'|format(registration_token) }}" an die {{ config.smpp_sender_msn }}!</td></tr>
+
+										<tr>
+											<td align="left" valign="middle" class="text">Angemeldete Geräte:</td>
+										</tr>
+
+										{% for device in devices %}
+										<tr>
+											<td align="left" valign="middle" class="text">MSN: {{ device.msn }}</td>
+											<td align="left" valign="middle"></td>
+										</tr>
+										{% else %}
+										<tr>
+											<td align="left" valign="middle" class="text">Bisher kein Gerät angemeldet.</td>
+											<td align="left" valign="middle"></td>
+										</tr>
+										{% endfor %}
+										
+										<tr>
+											<td colspan="3" class="text">
+												Geräte werden mit der Anmelde-SMS in deiner Browser-Session angemeldet.<br>
+												Um ein bestehendes Geraet in einem anderen Browser zu verwenden, schicke einfach eine weitere SMS mit dem neuen Anmeldecode.
+											</td>
+										</tr>
+										<tr>
+											<td colspan="3"><img src="./assets/trans.gif" width="1" height="9" border="0" alt=""></td>
+										</tr>
+									</tbody>
+								</table>
+
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+{% endblock %}

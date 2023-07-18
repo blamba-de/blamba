@@ -3,7 +3,7 @@ class RTTTL
 {
 	static function convert_to_nokia_sms($rtttl_filename)
 	{
-		$sms = RingtoneTools::run_sandboxed_ringtonetools("rtttl", $rtttl_filename, "nokia");
+		$sms = RingtoneTools::run_sandboxed_ringtonetools("rtttl", $rtttl_filename, "nokia", "-u");
 
 		if ($sms["success"])
 		{

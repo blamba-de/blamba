@@ -1,5 +1,6 @@
 <?php
 require_once("bootstrap.php");
+Session::current()->init();
 
 $page = strtolower(trim(preg_replace('/[^0-9a-zA-Z\-]/', '', $_GET['page'] ?? 'index')));
 

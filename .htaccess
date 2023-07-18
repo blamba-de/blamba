@@ -23,5 +23,5 @@ RewriteRule ^([^/]*)/preview/([0-9]*)$ /media.php?type=preview&id=$2 [L]
 # Satisfy All
 #
 
-Require ip 2001:9e8:e5e6::/48
-Require ip 92.116.127.82
+Require ip 2001:9e8::/32
+Require ip 92.116.0.0/16

@@ -13,6 +13,8 @@ if ($content["type"] == "rtttl")
 	$rtttldata = file_get_contents($content_path . $content["path"]);
 }
 
+$devices = $db->prepared_fetch("SELECT * FROM devices WHERE user = ?;", "s", session_id());
+
 echo $twig->render('pages/' . $page . '.html',
 [
 	'type' => $content["type"],
@@ -21,4 +23,7 @@ echo $twig->render('pages/' . $page . '.html',
 	'file_basename' => basename($content['path']),
 	'file_size' => filesize($content_path . $content['path']),
 	'rtttldata' => $rtttldata,
+	'devices' => $devices,
+	'registration_token' => $_SESSION['registration_token'],
+	'config' => $config,
 ]);

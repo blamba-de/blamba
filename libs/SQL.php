@@ -70,7 +70,7 @@ class SQL
 
 		if ($stmt->error != "")
 		{
-			echo "SQL error occured.";
+			error_log("SQL error occured. " . $stmt->error);
 			return;
 		}
 
@@ -122,7 +122,7 @@ class SQL
 		else
 		{
 			//echo $query . "<br />" . $this->error();
-			echo "SQL error occured.";
+			error_log("SQL error occured. " . $this->error());
 		}
 
 		return false;
