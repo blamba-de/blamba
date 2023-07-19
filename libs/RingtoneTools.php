@@ -6,11 +6,16 @@ class RingtoneTools
 		$ringtonetools_binary_path = SERVER_PATH . "vendor-native/ringtonetools/ringtonetools";
 		$seccomp_bpf_path = SERVER_PATH . "vendor-native/bwrap-seccomp/seccomp-ringtonetools.bpf";
 
-		return BubblewrapSandbox::run_sandboxed_process(
+		$command = "./executable " . $extraargs . " -intype " . escapeshellarg($intype) . " -outtype " . escapeshellarg($outtype) . " ./input ./output";
+
+		$sandboxResult = BubblewrapSandbox::run_sandboxed_process(
 			$ringtonetools_binary_path, 
 			$seccomp_bpf_path,
 			$infile,
-			"./executable " . $extraargs . " -intype " . escapeshellarg($intype) . " -outtype " . escapeshellarg($outtype) . " ./input ./output"
+			$command
 		);
+
+		Logging::log("run_sandboxed_ringtonetools", ['infile' => $infile, 'command' => $command, 'sandboxResult' => $sandboxResult]);
+		return $sandboxResult;
 	}
 }

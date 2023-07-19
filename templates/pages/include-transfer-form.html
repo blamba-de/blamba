@@ -5,6 +5,34 @@
 <tr>
 	<td colspan="3">
 		<table cellpadding="3" cellspacing="0" border="0" width="500">
+			{% if content.type == "operator-logo" %}
+			<tr>
+				<td class="text"><a href="/faq#operatorlogos" target="_blank">Typ</a>:</td>
+				<td align="left">
+					<input type="radio" class="logotype" id="operator-logo" name="logotype" value="operator-logo" checked>
+					<label for="operator-logo">Betreiberlogo</label>
+					<input type="radio" class="logotype" id="group-logo" name="logotype" value="group-logo">
+					<label for="group-logo">Gruppenlogo</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="text"><a href="https://en.wikipedia.org/wiki/Mobile_country_code" target="_blank">MCC</a>/<a href="https://en.wikipedia.org/wiki/Mobile_network_codes_in_ITU_region_2xx_(Europe)#Germany_%E2%80%93_DE" target="_blank">MNC</a>:</td>
+				<td align="left">
+					<input type="number" value="262" name="mcc" id="mcc" style="width: 50px;">&nbsp;<input type="number" value="42" name="mnc" id="mnc" style="width: 50px;">
+					<span id="networkinfo"></span>
+				</td>
+			</tr>
+			<tr>
+				<td class="text">Logo invertieren:</td>
+				<td align="left">
+					<input type="radio" class="invert" id="invert-no" name="invert" value="false" checked>
+					<label for="invert-no">Nein</label>
+					<input type="radio" class="invert" id="invert-yes" name="invert" value="true">
+					<label for="invert-yes">Ja</label>
+				</td>
+			</tr>
+			{% endif %}
+
 			<tr>
 				{% if devices|length == 0 %}
 					<td>
@@ -39,7 +67,6 @@
 					</td>
 				{% endif %}
 
-
 				{% if content.type == "polyphonic-ring" %}
 					<td class="text">Übertragungsart:</td>
 					<td align="left">
@@ -57,3 +84,37 @@
 	</td>
 </tr>
 </form>
+
+<script type="text/javascript">
+	function radiobuttons_changed()
+	{
+		if (Array.from(document.getElementsByClassName("logotype")).filter(x=>x['checked'])[0].value == "operator-logo")
+		{
+			document.getElementById('mcc').disabled = false;
+			document.getElementById('mnc').disabled = false;
+		}
+		else
+		{
+			document.getElementById('mcc').disabled = true;
+			document.getElementById('mnc').disabled = true;
+		}
+	}
+	document.getElementById('operator-logo').addEventListener("change", radiobuttons_changed);
+	document.getElementById('group-logo').addEventListener("change", radiobuttons_changed);
+
+	function mcc_mnc_changed()
+	{
+		network = networks[parseInt(document.getElementById('mcc').value) + "-" + parseInt(document.getElementById('mnc').value)];
+		if (network !== undefined)
+		{
+			document.getElementById('networkinfo').textContent = network;
+		}
+		else
+		{
+			document.getElementById('networkinfo').textContent = "";
+		}
+	}
+	document.getElementById('mcc').addEventListener("change", mcc_mnc_changed);
+	document.getElementById('mnc').addEventListener("change", mcc_mnc_changed);
+	mcc_mnc_changed();
+</script>

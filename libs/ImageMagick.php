@@ -5,6 +5,10 @@ class ImageMagick
 	{
 		global $config;
 		$seccomp_bpf_path = SERVER_PATH . "vendor-native/bwrap-seccomp/seccomp-imagemagick.bpf";
-		return BubblewrapSandbox::run_sandboxed_fakeroot($config["imagemagick_root"], $seccomp_bpf_path, $infile, "/usr/bin/convert /mnt/input " .  $additional_im_params . " gif:/mnt/output");
+		$sandboxResult = BubblewrapSandbox::run_sandboxed_fakeroot($config["imagemagick_root"], $seccomp_bpf_path, $infile, "/usr/bin/convert /mnt/input " .  $additional_im_params . " gif:/mnt/output");
+
+		Logging::log("convert_image_to_gif", ['infile' => $infile, 'additional_im_params' => $additional_im_params, 'sandboxResult' => $sandboxResult]);
+
+		return $sandboxResult;
 	}
 }

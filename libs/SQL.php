@@ -70,8 +70,8 @@ class SQL
 
 		if ($stmt->error != "")
 		{
-			error_log("SQL error occured. " . $stmt->error);
-			return;
+			Logging::log("prepared_query", ["error" => $stmt->error, "args" => $args]);
+			return false;
 		}
 
 		$resource = $stmt->get_result();
@@ -84,6 +84,8 @@ class SQL
 		{
 			return $resource;
 		}
+
+		return true;
 	}
 
 	function prepared_fetch ( ...$args )

@@ -14,6 +14,8 @@ if (is_null($device))
 	echo $twig->render('pages/404.html', []); exit();
 }
 
+Logging::log("web_transfer", $_POST, $device["msn"]);
+
 $db->prepared_query("UPDATE content SET sent = sent + 1 WHERE `id` = ? AND `visible` = 1;", "i", $content['id']);
 
 // encode the actual data
@@ -24,13 +26,28 @@ switch ($content["type"])
 		$sms = RTTTL::convert_to_nokia_sms($content_path . $content["path"]);
 		break;
 	case 'operator-logo':
-		//$sms = OperatorLogo::convert_to_nokia_sms_operator($content_path . $content["path"], 262, 42);
-		$sms = OperatorLogo::convert_to_nokia_sms_group($content_path . $content["path"]);
+		// Invert image or not? (ImageMagick command line arguments)
+		$im_params = "-monochrome -threshold 0 -negate";
+		if ($_POST["invert"] == "true")
+		{
+			$im_params = "-monochrome -threshold 0 -negate -negate";
+		}
 
+		if ($_POST["logotype"] == "operator-logo")
+		{
+			$sms = OperatorLogo::convert_to_nokia_sms_operator($content_path . $content["path"], (int)$_POST["mcc"], (int)$_POST["mnc"], $im_params);
+		}
+		if ($_POST["logotype"] == "group-logo")
+		{
+			$sms = OperatorLogo::convert_to_nokia_sms_group($content_path . $content["path"], $im_params);
+		}
 		break;
 	case 'bitmap':
 	case 'polyphonic-ring':
-		$sms = SMS::generate_wap_push("http://wap.blamba.de/dl/" . $content['id'] . "/" . basename($content["path"]), $content["name"]);
+		$sms = WAPPush::generate_stored( $content["type"], $content["name"], basename($content["path"]), $device["msn"], [
+			"id" => $content['id'],
+			"name" => $content["name"]
+		]);
 		break;
 	default:
 		break;

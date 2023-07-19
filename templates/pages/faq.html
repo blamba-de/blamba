@@ -17,20 +17,15 @@
     Blåmba braucht eine Methode um rohe SMS direkt an Teilnehmer*innen zu verschicken. Ohne Kostenaufwand funktioniert das leider nur in privaten Netzen, wie z.B. beim Chaos Communication Camp 2023.
 </p>
 <p>
-    <b>Wer würde sowas programmieren?</b><br>
-    <a href="https://chaos.social/@manawyrm" target="_blank">@manawyrm@chaos.social</a>
-</p>
-<p>
     <b>Kostet das wirklich Geld?</b><br>
-    Nein, aber das hält die Kolleg*innen von eventphone bestimmt nicht davon ab, dir trotzdem eine Rechnung zu schreiben :D
+    Nein :)
 </p>
-
 <p>
     <b>Welche Handys werden unterstützt?</b><br>
     Bei der Entwicklung getestet wurden Nokia 6310i und Nokia 6220. <br>
     Viele ähnliche Telefone von Nokia sollten auch funktionieren. <br>
     Andere Hersteller (Sony Ericsson, etc.) sind mangels Telefonen nicht implementiert.
-    Falls du ein passendes hast und weisst, wie die Datenübertragung funktionieren kann, <a href="https://chaos.social/@manawyrm" target="_blank">melde dich bitte!</a>
+    Falls du ein passendes hast und weisst, wie die Datenübertragung funktionieren kann, <a href="https://github.com/blamba-de/blamba/issues" target="_blank">melde dich bitte!</a>
 </p>
 <p>
     <b>Wie funktioniert das technisch?</b><br>
@@ -40,8 +35,19 @@
 </p>
 <p>
     <b>Ich habe eine coole Grafik/Klingelton/etc.</b><br>
-    Super! Stell bitte einen Pull-Request auf dem <a href="https://github.com/manawyrm/blamba-content" target="_blank">blamba-content Repository</a>.
+    Super! Stell bitte einen Pull-Request auf dem <a href="https://github.com/blamba-de/blamba-content-ingest" target="_blank">blamba-content-ingest Repository</a>.
 </p>
-
-
+<p id="operatorlogos">
+    <b>Was sind Betreiberlogos? Was sind Gruppenlogos?</b><br>
+    Betreiberlogos sind kleine Logos, welche einem bestimmten Mobilfunknetz zugeordnet sind. <br>
+    Wenn sich das Handy mit dem entsprechenden Netz verbindet, wird auf dem Home-Bildschirm das Betreiberlogo angezeigt.<br>
+    Der Mobilfunkanbieter wird anhand der weltweit eindeutigen <a href="https://en.wikipedia.org/wiki/Mobile_network_codes_in_ITU_region_2xx_(Europe)#Germany_%E2%80%93_DE" target="_blank">MCC/MNC Kombination</a> erkannt. <br>
+    Das CCC Event Netz verwendet 262/42. Die Telekom nutzt 262/01.
+    <br><br>
+    Gruppenlogos nutzen das gleiche Grafikformat, können aber Kontakten und Kontaktgruppen auf dem Telefon zugeordnet werden.
+    Beim Anruf eines solchen Kontaktes erscheint dann das Gruppenlogo.
+</p>
+<p>
+    &nbsp;
+</p>
 {% endblock %}

@@ -18,7 +18,7 @@ if ($content['type'] == "rtttl" || $content['type'] == "polyphonic-ring")
 switch ($content['type'])
 {
     case 'rtttl':
-        if ($type == "preview" || $type == "wap")
+        if ($type == "preview")
         {
             header('Content-Type: audio/midi');
             echo RTTTL::convert_to_midi($content_path . $content["path"]);
@@ -30,30 +30,23 @@ switch ($content['type'])
         break;
 }
 
-function download_file($file, $mime = false, $type = false)
+function download_file($file, $mime = false)
 {
     if (file_exists($file))
     {
-        if ($type == "wap")
+        header('Content-Description: File Transfer');
+        if ($mime !== false)
         {
-            header('Content-Type: ' . mime_content_type($file));
+            header('Content-Type: ' . $mime);
         }
         else
         {
-            header('Content-Description: File Transfer');
-            if ($mime !== false)
-            {
-                header('Content-Type: ' . $mime);
-            }
-            else
-            {
-                header('Content-Type: application/octet-stream');
-            }
-            header('Content-Disposition: attachment; filename="'.basename($file).'"');
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate');
-            header('Pragma: public');
+            header('Content-Type: application/octet-stream');
         }
+        header('Content-Disposition: attachment; filename="'.basename($file).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
         header('Content-Length: ' . filesize($file));
         readfile($file);
         exit;

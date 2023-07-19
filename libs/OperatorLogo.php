@@ -15,15 +15,15 @@ class OperatorLogo
 		return false;
 	}
 
-	static function convert_to_nokia_sms_group(string $logo_filename)
+	static function convert_to_nokia_sms_group(string $logo_filename, string $additional_im_params = "-threshold 0 -negate")
 	{
 		// This call will result in a Group Logo:
 		// WDP Port number 0x1583	Group Logo
-		$gifpath = self::convert_image_to_temporary_gif($logo_filename, "-threshold 0 -negate");
+		$gifpath = self::convert_image_to_temporary_gif($logo_filename, $additional_im_params);
 		if (!$gifpath)
 			return false;
 
-		$sms = RingtoneTools::run_sandboxed_ringtonetools("gif", $gifpath, "nokia", "-u");
+		$sms = RingtoneTools::run_sandboxed_ringtonetools("gif", $gifpath, "nokia", "-u ");
 		unlink($gifpath);
 
 		if ($sms["success"])
@@ -36,11 +36,11 @@ class OperatorLogo
 		}
 	}
 
-	static function convert_to_nokia_sms_operator(string $logo_filename, int $mcc = 262, int $mnc = 42)
+	static function convert_to_nokia_sms_operator(string $logo_filename, int $mcc = 262, int $mnc = 42, string $additional_im_params = "-threshold 0 -negate")
 	{
 		// This call will result in an Operator Logo:
 		// WDP Port number 0x1582	Operator Logo
-		$gifpath = self::convert_image_to_temporary_gif($logo_filename, "-threshold 0 -negate");
+		$gifpath = self::convert_image_to_temporary_gif($logo_filename, $additional_im_params);
 		if (!$gifpath)
 			return false;
 
