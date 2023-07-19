@@ -44,10 +44,11 @@ switch ($content["type"])
 		break;
 	case 'bitmap':
 	case 'polyphonic-ring':
-		$sms = WAPPush::generate_stored( $content["type"], $content["name"], basename($content["path"]), $device["msn"], [
+		$wappush = WAPPush::generate_stored( $content["type"], $content["name"], basename($content["path"]), $device["msn"], [
 			"id" => $content['id'],
 			"name" => $content["name"]
 		]);
+		$sms = WAPPush::generate_wap_push($wappush["url"], $wappush["name"]);
 		break;
 	default:
 		break;

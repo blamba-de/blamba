@@ -54,7 +54,10 @@ class WAPPush
 		$data = json_encode($data, JSON_PRETTY_PRINT);
 		$db->prepared_query("UPDATE `wappush` SET `msn` = ?, `type` = ?, `filename` = ?, `params` = ? WHERE `uuid` = ?;", "sssss", $msn, $type, $filename, $data, $uuid);
 
-		return self::generate_wap_push("http://wap.blamba.de/wp/" . $uuid . "/" . $filename, $name);
+		return [
+				"url" => "http://wap.blamba.de/wp/" . $uuid . "/" . $filename,
+				"name" => $name
+		];
 	}
 
 	static function generate_wap_push_uuid()

@@ -44,13 +44,12 @@ class SMS
 
 		// parse content-request SMS
 		$matches = [];
-		$re = '/^([0-9]{1,5})$/mi';
+		$re = '/^(plain\s*?)?([0-9]{1,5})$/mi';
 		preg_match_all($re, $sms->message, $matches, PREG_SET_ORDER, 0);
 		foreach ($matches as $match)
 		{
-			if (count($match) == 2)
+			if (Content::handle_sms_content_request($sms->source->value, $match))
 			{
-				Content::handle_sms_content_request($sms->source->value, $match[1]);
 				return true;
 			}
 		}
