@@ -1,0 +1,19 @@
+<tr>
+	{% if devices|length == 0 %}
+		<td>
+			Bisher <a href="/">kein Endgerät angemeldet</a>!<br>
+			Schicke eine SMS mit "REGISTER {{ '%06d'|format(registration_token) }}" an die {{ config.smpp_sender_msn }}!
+		</td>
+	{% else %}
+		<td class="text"><label for="msn">verschicken an:</label></td>
+		<td align="left">
+			<select name="msn" id="msn">
+				{% for device in devices %}
+					<option value="{{ device.msn }}">{{ device.msn }}{% if device.type != null %} ({{ device.type }}){% endif %}</option>
+				{% endfor %}
+			</select>
+			<input type="hidden" value="{{ '%05d'|format(content.id) }}" name="contentid">
+			<input type="submit" value="Übertragen">
+		</td>
+	{% endif %}
+</tr>

@@ -1,0 +1,15 @@
+{% for smsdata in smsarray %}
+<hr>
+<b>SMS {{ loop.index }}</b>
+<pre style='text-wrap: wrap;word-break: break-all;'>{{ smsdata }}</pre>
+	<div id="sms{{ loop.index }}" style="width: 586px;"></div>
+{% endfor %}
+
+<script type="text/javascript">
+$( 'document' ).ready( function() {
+	{% for smsdata in smsarray %}
+	decodePDUIntoDiv($( '#sms{{ loop.index }}' ), "{{ smsdata }}");
+	{% endfor %}
+} );
+</script>
+<br>

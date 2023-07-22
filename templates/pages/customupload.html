@@ -1,0 +1,154 @@
+{% extends "template.html" %}
+
+{% block head %}
+	{{ parent() }}
+{% endblock %}
+{% block content %}
+<table cellpadding="0" cellspacing="0" border="0" width="502">
+	<tbody>
+		<tr>
+			<td align="left" valign="baseline" width="221">
+				<table cellpadding="0" cellspacing="0" border="0" width="221">
+					<tbody>
+						<tr>
+							<td height="17" class="headtop" width="5"><img src="./assets/trans.gif" width="5" height="1" border="0" alt=""></td>
+							<td class="headtop" align="left">
+								<a class="headlink">Dateiupload</a>
+							</td>
+							<td height="17" width="9" style="background-image:url(./assets/ecke_head.gif); background-repeat:no-repeat;"></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+			<td align="left" valign="top"><img src="./assets/trans.gif" width="9" height="17" border="0" alt=""></td>
+		</tr>
+	</tbody>
+</table>
+
+<table cellpadding="1" cellspacing="0" border="0" width="502" class="headtop">
+	<tbody>
+		<tr>
+			<td align="center" valign="top">
+				<table cellpadding="0" cellspacing="0" border="0" width="500" height="148" class="whiteline">
+					<tbody>
+						<tr>
+							<td valign="top">
+								<form method="POST" action="/customupload" enctype="multipart/form-data">
+								<table cellpadding="3" cellspacing="0" border="0" width="500">
+									<tbody>
+										<tr>
+											<td class="text" colspan=3>Hier kannst du eigene Inhalte an deine registrierten Geräte schicken.<br><br>
+											<b>Die hochgeladenen Dateien werden auf dem Server gespeichert und unter einer bestimmten URL bereitgestellt. Sie sind damit quasi öffentlich!</b><br>
+											Bitte lade keine geschützten, obszönen oder verbotenen Inhalte hoch. 
+											</td>
+										</tr>
+										<tr>
+											<td class="text" style="color: #FF0000;" colspan=3>
+												<b>{{ error | nl2br }}</b>
+											</td>
+										</tr>
+										<tr>
+											<td class="text" style="color: #00c100;" colspan=3>
+												<b>{{ success | nl2br }}</b>
+											</td>
+										</tr>
+										{% if data != "" %}
+										<tr>
+											<td class="text" colspan=3>
+												Rohdaten: <br>
+												{{ include('pages/include-sms-pdu-decode.html') }}
+											</td>
+										</tr>
+										{% endif %}
+										<tr>
+											<td class="text"><label for="type">Inhaltstyp:</label></td>
+											<td colspan=2>
+												<select name="type" id="type">
+													<option value="operator-logo">Betreiberlogo (S/W, 72x14)</option>
+													<option value="group-logo">Gruppenlogo (S/W, 72x14)</option>
+													<option value="rtttl">Monophoner Klingelton (RTTTL)</option>
+													<option value="polyphonic-ring">Polyphoner Klingelton (MIDI)</option>
+													<option value="bitmap">Farbiges Logo (Grafikdatei)</option>
+													<option value="j2me">Java-Applikation</option>
+												</select>
+											</td>
+										</tr>
+
+										<tr id="fileupload-graphics">
+											<td class="text"><label for="file-graphics">Bilddatei:</label></td>
+											<td colspan=2>
+												<input type="file" id="file-graphics" name="file-graphics" accept="image/png, image/jpeg, image/gif, image/bmp">
+											</td>
+										</tr>
+
+										<tr id="fileupload-midi">
+											<td class="text"><label for="file-midi">MIDI-Datei:</label></td>
+											<td colspan=2>
+												<input type="file" id="file-midi" name="file-midi" accept="audio/midi, audio/x-midi">
+											</td>
+										</tr>
+
+										<tr id="fileupload-rtttl">
+											<td class="text"><label for="file-rtttl">RTTTL-Datei:</label></td>
+											<td colspan=2>
+												<input type="file" id="file-rtttl" name="file-rtttl" accept="text/plain">
+											</td>
+										</tr>
+
+										<tr id="fileupload-java">
+											<td class="text"><label for="file-java">Java-Applet:</label></td>
+											<td colspan=2>
+												<input type="file" id="file-java" name="file-java" accept="application/java-archive">
+											</td>
+										</tr>
+
+										<tr>
+											{{ include('pages/include-phone-select.html') }}
+										</tr>
+
+										<tr>
+											<td colspan="3"><img src="./assets/trans.gif" width="1" height="9" border="0" alt=""></td>
+										</tr>
+									</tbody>
+								</table>
+								</form>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<script type="text/javascript">
+	function type_changed()
+	{
+		document.getElementById('fileupload-graphics').style.display = "none";
+		document.getElementById('fileupload-midi').style.display = "none";
+		document.getElementById('fileupload-rtttl').style.display = "none";
+		document.getElementById('fileupload-java').style.display = "none";
+
+		switch (document.getElementById('type').value)
+		{												
+			case 'operator-logo':
+			case 'group-logo':
+			case 'bitmap':
+				document.getElementById('fileupload-graphics').style.display = "contents";
+				break;
+			case 'rtttl':
+				document.getElementById('fileupload-rtttl').style.display = "contents";
+				break;
+			case 'polyphonic-ring':
+				document.getElementById('fileupload-midi').style.display = "contents";
+				break;
+			case 'j2me':
+				document.getElementById('fileupload-java').style.display = "contents";
+				break;
+			default:
+		}
+	}
+	document.getElementById('type').addEventListener("change", type_changed);
+	type_changed();
+</script>
+{% endblock %}

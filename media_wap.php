@@ -30,16 +30,26 @@ if (!empty($wappush["msn"]))
 $db->prepared_query("UPDATE wappush SET download_count = download_count + 1 WHERE `uuid` = ?;", "s", $_GET['id']);
 $wappush_params = json_decode($wappush["params"], true);
 
-$id = $wappush_params["id"];
-$content = $db->prepared_fetch_one("SELECT * FROM content WHERE `id` = ? AND `visible` = 1;", "i", $id);
-if (is_null($content))
+// User-defined custom file upload
+if (($wappush_params["mode"] ?? '') == "custom" )
 {
-    http_response_code(404);
-    echo "Content could not be found!";
-    exit;
+    download_file($userupload_path . "/" . $wappush["uuid"]);
 }
-$db->prepared_query("UPDATE content SET played = played + 1 WHERE `id` = ? AND `visible` = 1;", "i", $content['id']);
-download_file($content_path . $content["path"]);
+else
+{
+    // Regular content
+    $id = $wappush_params["id"];
+    $content = $db->prepared_fetch_one("SELECT * FROM content WHERE `id` = ? AND `visible` = 1;", "i", $id);
+    if (is_null($content))
+    {
+        http_response_code(404);
+        echo "Content could not be found!";
+        exit;
+    }
+    $db->prepared_query("UPDATE content SET played = played + 1 WHERE `id` = ? AND `visible` = 1;", "i", $content['id']);
+    download_file($content_path . $content["path"]);
+}
+
 
 function download_file($file)
 {

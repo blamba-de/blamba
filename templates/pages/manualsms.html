@@ -13,7 +13,7 @@
 						<tr>
 							<td height="17" class="headtop" width="5"><img src="./assets/trans.gif" width="5" height="1" border="0" alt=""></td>
 							<td class="headtop" align="left">
-								<a class="headlink">Übertragung - {{ content.name }}</a>
+								<a class="headlink">Manuelle SMS versenden</a>
 							</td>
 							<td height="17" width="9" style="background-image:url(./assets/ecke_head.gif); background-repeat:no-repeat;"></td>
 						</tr>
@@ -33,42 +33,57 @@
 					<tbody>
 						<tr>
 							<td valign="top">
-
-								<table cellpadding="3" cellspacing="0" border="0" width="593">
+								<form method="POST" action="/manualsms">
+								<table cellpadding="3" cellspacing="0" border="0" width="500">
 									<tbody>
 										<tr>
 											<td align="left" valign="top"><img src="./assets/trans.gif" width="205" height="1" border="0" alt=""></td>
 											<td align="left" valign="top"><img src="./assets/trans.gif" width="25" height="1" border="0" alt=""></td>
 											<td align="left" valign="top"><img src="./assets/trans.gif" width="30" height="1" border="0" alt=""></td>
 										</tr>
-
 										<tr>
-											<table cellpadding="3" cellspacing="0" border="0" width="593">
-												
-												<tr>
-													<td colspan="3">
-														Inhalt wird übermittelt!<br><br>
+											<td class="text">Hier kannst du händisch SMS mit 8bit Binärdaten an deine registrierten Geräte schicken.
+											Beispielaufrufe fuer <a href="https://www.mikekohn.net/file_formats/ringtonetools.php" target="_blank">ringtonetools</a>: <br>
+											<pre>ringtonetools -u -s 280 -intype rtttl -outtype nokia monkey.txt -
+ringtonetools -u -s 280 -intype gif -outtype nokia fox.gif -</pre>
+											Pro Zeile wird eine SMS verschickt, jede Zeile darf nur Hex-Ziffern enthalten.<br>
+											Leere Zeilen werden ignoriert. Zeilen mit //SCKL-Header werden nicht unterstützt.<br>
+											Maximal 5 SMS pro Aufruf. Maximal 140 Bytes pro Nachricht.<br>
+											<b>Fehlerhafte Nachrichten können dein Handy zum Absturz bringen oder sogar beschädigen. Be careful!</b>
+											</td>
+										</tr>
+										<tr>
+											<td class="text" style="color: #FF0000;">
+												<b>{{ error | nl2br }}</b>
+											</td>
+										</tr>
+										<tr>
+											<td class="text" style="color: #00c100;">
+												<b>{{ success | nl2br }}</b>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<textarea style="width: 490px; height: 200px;" name="data">{{ data }}</textarea> <br><br>
 
-														Technische Details: <br>
-														{{ smscount }} SMS-Nachricht(en), {{ smsbytes }} Bytes<br><br>
-
-														{{ include('pages/include-sms-pdu-decode.html') }}
-
-														<button onclick="history.back()">zurück zum Inhalt</button>
-														<button onclick="document.location = '/{{ content.type }}/'">zurück zur Übersicht</button>
-													</td>
-												</tr>
+												{{ include('pages/include-sms-pdu-decode.html') }}
+											</td>
+										</tr>
+										<tr>
+											<table cellpadding="3" cellspacing="0" border="0" width="500">
+												{{ include('pages/include-phone-select.html') }}
 											</table>
 											<td align="left" valign="middle" class="text"></td>
 											<td align="center" valign="middle"></td>
 											<td align="left" valign="middle"></td>
 										</tr>
+
 										<tr>
 											<td colspan="3"><img src="./assets/trans.gif" width="1" height="9" border="0" alt=""></td>
 										</tr>
 									</tbody>
 								</table>
-
+								</form>
 							</td>
 						</tr>
 					</tbody>
