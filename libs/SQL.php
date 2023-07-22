@@ -18,7 +18,6 @@ class SQL
 		if( $this->db )
 		{
 			mysqli_set_charset( $this->db, "utf8mb4" );
-			$this->db->query("SET innodb_autoinc_lock_mode = 0;");
 
 			return mysqli_select_db( $this->db, $db );
 		}

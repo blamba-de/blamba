@@ -60,13 +60,15 @@ SMS::send_udh_sms($device["msn"], $sms);
 // statistics, count SMSes and data bytes
 $smscount = 0;
 $smsbytes = 0;
+$smsarray = [];
 foreach (explode("\n", $sms) as $line)
 {
 	$line = trim($line);
 	if ($line != '')
 	{
 		$smscount++;
-		$smsbytes += strlen(hex2bin($line));	
+		$smsbytes += strlen(hex2bin($line));
+		$smsarray[] = bin2hex(hex2bin($line));
 	}
 }
 
@@ -78,6 +80,7 @@ echo $twig->render('pages/' . $page . '.html',
 	'registration_token' => $_SESSION['registration_token'],
 	'config' => $config,
 	'sms' => $sms,
+	'smsarray' => $smsarray,
 	'smscount' => $smscount,
 	'smsbytes' => $smsbytes
 ]);

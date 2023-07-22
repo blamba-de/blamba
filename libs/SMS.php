@@ -20,6 +20,55 @@ class SMS
 		}
 	}
 
+	static function sanity_check_udh_array($data)
+	{
+		$error = "";
+		$smscount = 0;
+
+		foreach (explode("\n", $data) as $linecount => $line)
+		{
+		 	$line = trim($line);
+		 	if ($line != '')
+		 	{
+				$smscount++;
+				if ($smscount > 5)
+				{
+					$error .= "Zu viele Mitteilungen (" . $smscount . ")\n";
+				}
+
+				if (@hex2bin($line) === false)
+				{
+					$error .= "Hex-Decoding in Zeile " . ($linecount + 1) . " fehlgeschlagen\n";
+				}
+
+				if (strlen(@hex2bin($line)) > 140)
+				{
+					$error .= "Zeile " . ($linecount + 1) . " ist länger als 140 Bytes\n";
+				}
+		 	}
+		}
+
+		$error = trim($error);
+		return $error;
+	}
+
+	static function split_sms_string($sms)
+	{
+		$smsarray = [];
+		foreach (explode("\n", $sms) as $line)
+		{
+			$line = trim($line);
+			if ($line != '')
+			{
+				if (@hex2bin($line) !== false)
+				{
+					$smsarray[] = @bin2hex(@hex2bin($line));
+				}
+			}
+		}
+		return $smsarray;
+	}
+
 	static function parse_inbound_sms($sms)
 	{
 		Logging::log("parse_inbound_sms", $sms->message, $sms->source->value);

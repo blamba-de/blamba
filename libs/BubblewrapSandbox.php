@@ -21,26 +21,32 @@ class BubblewrapSandbox
 
 		copy($infile, $workdir . "input");
 
+		$libs = "--ro-bind " . escapeshellarg($fakeroot_dir . "/lib64/") . " /lib64 ";
+		// ImageMagick modules (.so files)
+		$libs .= "--ro-bind " . escapeshellarg($fakeroot_dir . "/usr/lib/x86_64-linux-gnu/ImageMagick-6.9.11") . " /usr/lib/x86_64-linux-gnu/ImageMagick-6.9.11 ";
+
+		if (php_uname("m") == "aarch64")
+		{
+			// ImageMagick modules (.so files)
+			$libs = "--ro-bind " . escapeshellarg($fakeroot_dir . "/usr/lib/aarch64-linux-gnu/ImageMagick-6.9.11") . " /usr/lib/aarch64-linux-gnu/ImageMagick-6.9.11 ";
+		}
+
 		$cmd = "timeout 10 bwrap --die-with-parent --seccomp 10 --new-session " . 
 				// Libraries (libpng, etc.)
 				"--ro-bind " . escapeshellarg($fakeroot_dir . "/lib/") . " /lib " .
-				"--ro-bind " . escapeshellarg($fakeroot_dir . "/lib64/") . " /lib64 " .
 				// ImageMagick config files (delegates.xml, etc.)
 				"--ro-bind " . escapeshellarg($fakeroot_dir . "/etc/ImageMagick-6/") . " /etc/ImageMagick-6 " .
 				// Symlink from /usr/bin/convert to /etc/alternatives
 				"--ro-bind " . escapeshellarg($fakeroot_dir . "/etc/alternatives/") . " /etc/alternatives " .
 				// actual ImageMagick binary
 				"--ro-bind " . escapeshellarg($fakeroot_dir . "/usr/bin/convert-im6.q16") . " /usr/bin/convert-im6.q16 " .
-				// ImageMagick symlink
-				"--ro-bind " . escapeshellarg($fakeroot_dir . "/usr/bin/convert") . " /usr/bin/convert " .
-				// ImageMagick modules (.so files)
-				"--ro-bind " . escapeshellarg($fakeroot_dir . "/usr/lib/x86_64-linux-gnu/ImageMagick-6.9.11") . " /usr/lib/x86_64-linux-gnu/ImageMagick-6.9.11 " .
+				$libs .
 				"--bind " . escapeshellarg($workdir) . " /mnt --unshare-all " . $command;
 
 		return self::run_sandbox($seccomp_bpf_path, $cmd, $workdir);
 	}
 
-	function run_sandbox($seccomp_bpf_path, $cmd, $workdir)
+	static function run_sandbox($seccomp_bpf_path, $cmd, $workdir)
 	{
 		$descriptorspec = array(
 			0 => array("pipe", "r"),  // stdin
@@ -49,8 +55,9 @@ class BubblewrapSandbox
 			10 => array("file", $seccomp_bpf_path, "r") // FD 10 is a BPF program containing seccomp rules limiting the allowed syscalls
 		);
 
-		$process = proc_open($cmd, $descriptorspec, $pipes, $workdir, []);
+		//var_dump($cmd);
 
+		$process = proc_open($cmd, $descriptorspec, $pipes, $workdir, []);
 		$success = false;
 		$output = false;
 		$stdout = false;
@@ -83,7 +90,7 @@ class BubblewrapSandbox
 		];
 	}
 
-	function create_workdir()
+	static function create_workdir()
 	{
 		global $config;
 		$tempdir = $config['tempdir'];

@@ -4,27 +4,31 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "64a80b52fa612103d1e0e57bae09927a",
+    "content-hash": "671afaae7dc051f9863dd72c408c091f",
     "packages": [
         {
-            "name": "alexandr-mironov/php-smpp",
-            "version": "1.3.0.9",
+            "name": "alexandr-mironov/php8-smpp",
+            "version": "dev-main",
             "source": {
                 "type": "git",
-                "url": "https://github.com/alexandr-mironov/php-smpp.git",
-                "reference": "1d3b53c2d2b63d51ab70009d956914b7f8903118"
+                "url": "https://github.com/alexandr-mironov/php8-smpp.git",
+                "reference": "5f890514b70b6eb9aee0d4db7fd51167796f3455"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexandr-mironov/php-smpp/zipball/1d3b53c2d2b63d51ab70009d956914b7f8903118",
-                "reference": "1d3b53c2d2b63d51ab70009d956914b7f8903118",
+                "url": "https://api.github.com/repos/alexandr-mironov/php8-smpp/zipball/5f890514b70b6eb9aee0d4db7fd51167796f3455",
+                "reference": "5f890514b70b6eb9aee0d4db7fd51167796f3455",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
                 "ext-sockets": "*",
-                "php": ">=5.4"
+                "php": "8.*"
             },
+            "require-dev": {
+                "phpstan/phpstan": "1.4.8"
+            },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -39,15 +43,10 @@
                 {
                     "name": "Alexandr Mironov",
                     "email": "alex@hyptrex.com"
-                },
-                {
-                    "name": "Hans Duedal",
-                    "email": "hd@oc.dk",
-                    "homepage": "http://oc.dk"
                 }
             ],
-            "description": "PHP SMPP client lib, fork of onlinecity/php-smpp",
-            "homepage": "https://github.com/alexandr-mironov/php-smpp",
+            "description": "PHP SMPP client lib, based on fork of onlinecity/php-smpp",
+            "homepage": "https://github.com/alexandr-mironov/php8-smpp",
             "keywords": [
                 "gsm",
                 "smpp",
@@ -55,10 +54,10 @@
                 "texting"
             ],
             "support": {
-                "issues": "https://github.com/alexandr-mironov/php-smpp/issues",
-                "source": "https://github.com/alexandr-mironov/php-smpp/tree/1.3.0.9"
+                "issues": "https://github.com/alexandr-mironov/php8-smpp/issues",
+                "source": "https://github.com/alexandr-mironov/php8-smpp/tree/main"
             },
-            "time": "2022-12-02T20:14:38+00:00"
+            "time": "2022-12-02T19:41:08+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -299,8 +298,10 @@
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "alexandr-mironov/php8-smpp": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

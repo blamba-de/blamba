@@ -1,29 +1,31 @@
 <?php
 require_once("bootstrap.php");
-use smpp\{ Address, SMPP, Client as SmppClient, transport\Socket};
+use smpp\{ Address, Smpp, Client as SmppClient, transport\Socket};
 
 $timeout = 1000;
 $debug = true;
 
+Socket::$defaultDebug = true;
+
 $transport = new Socket([$config["smpp_hostname"]], $config["smpp_port"]);
 $transport->setRecvTimeout($timeout);
 
-// Hack to make protected function submit_sm() callable
+// Hack to make protected function submitShortMessage() callable
 $smppClient = new class($transport) extends SmppClient {
-    public function submit_sm(
-                $source,
+    public function submitShortMessage(
+        Address $source,
+        Address $destination,
+        string $shortMessage = null,
+        array $tags = null,
+        int $dataCoding = Smpp::DATA_CODING_DEFAULT,
+        int $priority = 0x00,
+        string $scheduleDeliveryTime = null,
+        string $validityPeriod = null,
+        string $esmClass = null
+    ): string {
+      return parent::submitShortMessage($source,
                 $destination,
-                $short_message = null,
-                $tags = null,
-                $dataCoding = SMPP::DATA_CODING_DEFAULT,
-                $priority = 0x00,
-                $scheduleDeliveryTime = null,
-                $validityPeriod = null,
-                $esmClass = null
-    ) {
-      return parent::submit_sm($source,
-                $destination,
-                $short_message,
+                $shortMessage,
                 $tags,
                 $dataCoding,
                 $priority,
@@ -32,10 +34,6 @@ $smppClient = new class($transport) extends SmppClient {
                 $esmClass);
     }
 };
-
-// Activate binary hex-output of server interaction
-$smppClient->debug = $debug;
-$transport->debug = $debug;
 
 $from = new Address($config["smpp_sender_alpha"],SMPP::TON_ALPHANUMERIC);
 
@@ -68,7 +66,7 @@ while ($transport->isOpen())
                 continue;
             }
 
-            $res = $smppClient->submit_sm(
+            $res = $smppClient->submitShortMessage(
                 $from,
                 $to,
                 $udh_binary,

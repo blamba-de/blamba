@@ -23,7 +23,7 @@ class OperatorLogo
 		if (!$gifpath)
 			return false;
 
-		$sms = RingtoneTools::run_sandboxed_ringtonetools("gif", $gifpath, "nokia", "-u ");
+		$sms = RingtoneTools::run_sandboxed_ringtonetools("gif", $gifpath, "nokia", "-s 280 -u ");
 		unlink($gifpath);
 
 		if ($sms["success"])
@@ -44,7 +44,7 @@ class OperatorLogo
 		if (!$gifpath)
 			return false;
 
-		$sms = RingtoneTools::run_sandboxed_ringtonetools("gif", $gifpath, "nokia", "-u -l " . escapeshellarg((int) $mcc) . " " . escapeshellarg((int) $mnc));
+		$sms = RingtoneTools::run_sandboxed_ringtonetools("gif", $gifpath, "nokia", "-s 280 -u -l " . escapeshellarg((int) $mcc) . " " . escapeshellarg((int) $mnc));
 		unlink($gifpath);
 
 		if ($sms["success"])
