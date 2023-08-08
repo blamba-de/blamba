@@ -48,10 +48,12 @@
 													<td class="text">Titel:</td>
 													<td>{{ content.name }}</td>
 												</tr>
+												{% if content.author != 2 %}
 												<tr>
 													<td class="text">Autor:</td>
 													<td>{{ content.authorname }}</td>
 												</tr>
+												{% endif %}
 												<tr>
 													<td class="text">Dateiname:</td>
 													<td>{{ file_basename }} ({{ file_size }} Bytes)</td>

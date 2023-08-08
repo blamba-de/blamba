@@ -75,6 +75,15 @@
 										</tr>
 										{% endif %}
 
+										{% if item.type == "j2me" %}
+										<tr>
+											<td align="left" valign="middle" class="text">{{ '%05d'|format(item.id) }}. <a class="cntb" href="/{{ type }}/details/{{ '%05d'|format(item.id) }}">{{ item.name }}</a></td>
+											<td align="center" valign="middle">
+												<!--<img src="/{{ type }}/preview/{{ '%05d'|format(item.id) }}" height="42" class="img-nearest">-->&nbsp;
+											</td>
+											<td align="left" valign="middle"><a class="cnt" href="/{{ type }}/details/{{ '%05d'|format(item.id) }}"><img src="./assets/aufshandy_icon.gif" border="0" alt="Auf's Handy" title="Auf's Handy"></a></td>
+										</tr>
+										{% endif %}
 
 										{% else %}
 											<tr>

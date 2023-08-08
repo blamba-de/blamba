@@ -42,6 +42,7 @@ switch ($content["type"])
 			$sms = OperatorLogo::convert_to_nokia_sms_group($content_path . $content["path"], $im_params);
 		}
 		break;
+	case 'j2me':
 	case 'bitmap':
 	case 'polyphonic-ring':
 		$wappush = WAPPush::generate_stored( $content["type"], $content["name"], basename($content["path"]), $device["msn"], [
