@@ -5,6 +5,7 @@ import_content($content_path, "rtttl");
 import_content($content_path, "polyphonic-ring");
 import_content($content_path, "operator-logo");
 import_content($content_path, "bitmap");
+import_content($content_path, "j2me");
 
 function import_content($path, $type)
 {
