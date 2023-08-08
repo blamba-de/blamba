@@ -29,7 +29,7 @@ class Content
 		}
 	}
 
-	static function handle_sms_content_request($sender, $regex_matches)
+	static function handle_sms_content_request($gateway, $sender, $regex_matches)
 	{
 		global $db, $content_path;
 
@@ -54,7 +54,7 @@ class Content
 
 		if ($content === null)
 		{
-			SMS::send_text_sms($sender, "Der Inhalt " . $content_id . " wurde nicht gefunden. Versuche es bitte erneut.");
+			SMS::send_text_sms($gateway, $sender, "Der Inhalt " . $content_id . " wurde nicht gefunden. Versuche es bitte erneut.");
 			return false;
 		}
 
@@ -77,18 +77,18 @@ class Content
 				]);
 				if ($plain)
 				{
-					SMS::send_text_sms($sender, $wappush["url"]);
+					SMS::send_text_sms($gateway, $sender, $wappush["url"]);
 					return true;
 				}
 				$sms = WAPPush::generate_wap_push($wappush["url"], $wappush["name"]);
 				break;
 			default:
-				SMS::send_text_sms($sender, "Der Inhalt " . $content_id . " kann leider nicht per SMS angefordert werden. Probier es ueber www.blamba.de.");
+				SMS::send_text_sms($gateway, $sender, "Der Inhalt " . $content_id . " kann leider nicht per SMS angefordert werden. Probier es ueber www.blamba.de.");
 				return true;
 				break;
 		}
 
-		SMS::send_udh_sms($sender, $sms);
+		SMS::send_udh_sms($gateway, $sender, $sms);
 		return true;
 	}
 }

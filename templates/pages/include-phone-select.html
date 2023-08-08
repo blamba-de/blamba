@@ -9,7 +9,7 @@
 		<td align="left">
 			<select name="msn" id="msn">
 				{% for device in devices %}
-					<option value="{{ device.msn }}">{{ device.msn }}{% if device.type != null %} ({{ device.type }}){% endif %}</option>
+					<option value="{{ device.id }}">{{ device.msn }}{% if device.type != null %} ({{ device.type }}){% endif %}</option>
 				{% endfor %}
 			</select>
 			<input type="hidden" value="{{ '%05d'|format(content.id) }}" name="contentid">

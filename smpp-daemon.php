@@ -2,12 +2,14 @@
 require_once("bootstrap.php");
 use smpp\{ Address, Smpp, Client as SmppClient, transport\Socket};
 
+$gateway = $db->prepared_fetch_one("SELECT * FROM gateways WHERE id = ?;", "i", 1);
+
 $timeout = 1000;
 $debug = true;
 
 Socket::$defaultDebug = true;
 
-$transport = new Socket([$config["smpp_hostname"]], $config["smpp_port"]);
+$transport = new Socket([$gateway["smpp_hostname"]], (int) $gateway["smpp_port"]);
 $transport->setRecvTimeout($timeout);
 
 // Hack to make protected function submitShortMessage() callable
@@ -35,10 +37,10 @@ $smppClient = new class($transport) extends SmppClient {
     }
 };
 
-$from = new Address($config["smpp_sender_alpha"],SMPP::TON_ALPHANUMERIC);
+$from = new Address($gateway["sender_name"],SMPP::TON_ALPHANUMERIC);
 
 $transport->open();
-$smppClient->bindTransceiver($config["smpp_username"], $config["smpp_password"]);
+$smppClient->bindTransceiver($gateway["smpp_username"], $gateway["smpp_password"] ?? '');
 
 while ($transport->isOpen())
 {
@@ -46,7 +48,7 @@ while ($transport->isOpen())
     $sms = $smppClient->readSMS();
     if ($sms)
     {
-        SMS::parse_inbound_sms($sms);
+        SMS::parse_inbound_sms($gateway, $sms->message, $sms->source->value);
     }
 
     // sending messages

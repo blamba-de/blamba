@@ -14,12 +14,14 @@ if (isset($_POST["data"]))
 	{
 		$success = "Nachrichten wurden zum Versand hinterlegt.";
 
-		$device = $db->prepared_fetch_one("SELECT * FROM devices WHERE user = ? AND msn = ?;", "ss", session_id(), (int)$_POST['msn']);
+		$device = $db->prepared_fetch_one("SELECT * FROM devices WHERE user = ? AND id = ?;", "ss", session_id(), (int)$_POST['msn']);
 		if (is_null($device))
 		{
 			echo $twig->render('pages/404.html', []); exit();
 		}
-		SMS::send_udh_sms($device["msn"], $data);
+		$gateway = $db->prepared_fetch_one("SELECT * FROM gateways WHERE enabled = 1 AND id = ?;", "i", $device["gateway"]);
+
+		SMS::send_udh_sms($gateway, $device["msn"], $data);
 		$smsarray = SMS::split_sms_string($data);
 	}
 }

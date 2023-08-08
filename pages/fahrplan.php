@@ -35,11 +35,12 @@ $data = "";
 $success = false;
 if (isset($_POST["msn"]))
 {
-	$device = $db->prepared_fetch_one("SELECT * FROM devices WHERE user = ? AND msn = ?;", "ss", session_id(), (int)$_POST['msn']);
+	$device = $db->prepared_fetch_one("SELECT * FROM devices WHERE user = ? AND id = ?;", "ss", session_id(), (int)$_POST['msn']);
 	if (is_null($device))
 	{
 		echo $twig->render('pages/404.html', []); exit();
 	}
+	$gateway = $db->prepared_fetch_one("SELECT * FROM gateways WHERE enabled = 1 AND id = ?;", "i", $device["gateway"]);
 
 	$count = 0;
 	foreach ($events as $event)
@@ -55,7 +56,7 @@ if (isset($_POST["msn"]))
 			// We're only sending a single Event per SMS, 
 			// sending multiple breaks old Nokias (like the 6310i)
 			$sms = SMS::generate_vcal_udh([$event]);
-			SMS::send_udh_sms($device["msn"], $sms);
+			SMS::send_udh_sms($gateway, $device["msn"], $sms);
 
 			$data .= $sms . "\n\n";
 			$success = "Die Fahrplaneinträge wurden an dein Handy geschickt!";

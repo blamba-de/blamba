@@ -20,15 +20,15 @@ class Device
 		return $_SESSION['registration_token'];
 	}
 
-	static function check_registration_token($registration_token, $msn)
+	static function check_registration_token($gateway, $registration_token, $msn)
 	{
 		global $db;
 
 		$session = $db->prepared_fetch_one("SELECT id FROM `sessions` WHERE `registration_token` = ?", "i", (int) $registration_token);
 		if ($session !== NULL)
 		{
-			$db->prepared_query("DELETE FROM `devices` WHERE `msn` = ?;", "s", $msn);
-			$db->prepared_query("INSERT INTO `devices` (`user`, `msn`) VALUES (?, ?);", "ss", $session['id'], $msn);
+			$db->prepared_query("DELETE FROM `devices` WHERE `msn` = ? AND `gateway` = ?;", "si", $msn, $gateway['id']);
+			$db->prepared_query("INSERT INTO `devices` (`user`, `msn`, `gateway`) VALUES (?, ?, ?);", "ssi", $session['id'], $msn, $gateway['id']);
 			return true;
 		}
 

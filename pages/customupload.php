@@ -51,11 +51,13 @@ function save_upload($file, $type, $extensions, $msn, $data)
 
 if (isset($_POST["type"]))
 {
-	$device = $db->prepared_fetch_one("SELECT * FROM devices WHERE user = ? AND msn = ?;", "ss", session_id(), (int)$_POST['msn']);
+	$device = $db->prepared_fetch_one("SELECT * FROM devices WHERE user = ? AND id = ?;", "ss", session_id(), (int)$_POST['msn']);
 	if (is_null($device))
 	{
 		echo $twig->render('pages/404.html', []); exit();
 	}
+	$gateway = $db->prepared_fetch_one("SELECT * FROM gateways WHERE enabled = 1 AND id = ?;", "i", $device["gateway"]);
+
 	$data = "";
 
 	switch ($_POST["type"])
@@ -105,7 +107,7 @@ if (isset($_POST["type"]))
 	if ($error == "")
 	{
 		$success = "Nachrichten wurden zum Versand hinterlegt.";
-		SMS::send_udh_sms($device["msn"], $data);
+		SMS::send_udh_sms($gateway, $device["msn"], $data);
 	}
 }
 

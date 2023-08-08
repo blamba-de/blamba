@@ -8,11 +8,12 @@ if (is_null($content))
 }
 
 // permissions, is this user allowed to access that device?
-$device = $db->prepared_fetch_one("SELECT * FROM devices WHERE user = ? AND msn = ?;", "ss", session_id(), (int)$_POST['msn']);
+$device = $db->prepared_fetch_one("SELECT * FROM devices WHERE user = ? AND id = ?;", "ss", session_id(), (int)$_POST['msn']);
 if (is_null($device))
 {
 	echo $twig->render('pages/404.html', []); exit();
 }
+$gateway = $db->prepared_fetch_one("SELECT * FROM gateways WHERE enabled = 1 AND id = ?;", "i", $device["gateway"]);
 
 Logging::log("web_transfer", $_POST, $device["msn"]);
 
@@ -56,7 +57,7 @@ switch ($content["type"])
 }
 
 // actually send the SMS
-SMS::send_udh_sms($device["msn"], $sms);
+SMS::send_udh_sms($gateway, $device["msn"], $sms);
 
 // statistics, count SMSes and data bytes
 $smscount = 0;

@@ -4,12 +4,8 @@ class WAPPush
 	static function generate_wap_push($url, $text)
 	{
 		Logging::log("generate_wap_push", ["url" => $url, "text" => $text]);
+
 		$data = [
-			"\x06", // UDH length
-			"\x05", // Application Port Addressing, 16 bit address
-			"\x04", // content length
-			"\x0B\x84", // Destination port number, IANA WAP-Push Multimedia Messaging Service port (2948)
-			"\x23\xF0", // Source port number
 			"\x01", // trans id
 			"\x06", // Push
 			"\x04", // Header Length
@@ -39,11 +35,8 @@ class WAPPush
 			"\x01", // Close SI Tag
 		];
 
-		$bindata = implode("", $data);
-		if (strlen($bindata) > 140)
-			throw new Exception("WAP Push message length exceeds 140 bytes.");
-		
-		return bin2hex($bindata);
+		// IANA WAP-Push Multimedia Messaging Service port
+		return SMS::generate_udh(2948, implode("", $data));
 	}
 
 	static function generate_wap_push_service_load($url, $text)
