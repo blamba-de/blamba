@@ -16,16 +16,3 @@ RewriteRule ^([^/]*)/download/([0-9]*)$ /media.php?type=download&id=$2 [L]
 RewriteRule ^([^/]*)/preview/([0-9]*)$ /media.php?type=preview&id=$2 [L]
 
 
-# AuthType Basic
-# AuthName "Login"
-# AuthUserFile .htpasswd
-# Require valid-user
-# Satisfy All
-#
-
-Require ip 2001:9e8::/32
-Require ip 92.116.0.0/16
-
-Require ip 89.244.0.0/16
-Require ip 90.187.100.197/32
-Require ip 2a02:8106:19:4900::/56
