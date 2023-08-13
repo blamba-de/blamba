@@ -95,7 +95,7 @@ class WAPPush
 
 		return [
 				"uuid" => $uuid,
-				"url" => "http://wap.blamba.de/wp/" . $uuid . "/" . $filename,
+				"url" => "http://wap.blamba.de/wp/" . $uuid . "/" . urlencode($filename),
 				"name" => $name
 		];
 	}
