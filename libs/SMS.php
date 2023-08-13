@@ -181,9 +181,49 @@ END:VCALENDAR";
 		return $smsarray;
 	}
 
+	static function check_if_sender_is_allowed($sms_from)
+	{
+		// Eventphone Number
+		if (strlen($sms_from) == 4)
+			return true;
+
+		// German cellular networks (covered by flatrate billing)
+		if (in_array(substr($sms_from, 0, 6), [
+			"+49151",
+			"+49155",
+			"+49158",
+			"+49160",
+			"+49170",
+			"+49171",
+			"+49175",
+			"+49152",
+			"+49162",
+			"+49172",
+			"+49173",
+			"+49174",
+			"+49157",
+			"+49159",
+			"+49163",
+			"+49176",
+			"+49177",
+			"+49178",
+			"+49179",
+		]))
+			return true;
+
+		return false;
+	}
+
 	static function parse_inbound_sms($gateway, $sms_message, $sms_from)
 	{
 		Logging::log("parse_inbound_sms", $sms_message, $sms_from);
+
+		if (!self::check_if_sender_is_allowed($sms_from))
+		{
+			error_log("Received SMS with content " . $sms_message . " from unallowed sender " . $sms_from);
+			Logging::log("unallowed sender, rejected", $sms_message, $sms_from);
+			return false;
+		}
 
 		// parse registration SMS
         $matches = [];
