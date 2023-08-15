@@ -67,7 +67,7 @@ class Content
 				$sms = RTTTL::convert_to_nokia_sms($content_path . $content["path"]);
 				break;
 			case 'operator-logo':
-				$sms = OperatorLogo::convert_to_nokia_sms_operator($content_path . $content["path"], 262, 42, "-monochrome -threshold 0 -negate");
+				$sms = OperatorLogo::convert_to_nokia_sms_operator($content_path . $content["path"], 901, 70, "-monochrome -threshold 0 -negate");
 				break;
 			case 'bitmap':
 			case 'polyphonic-ring':

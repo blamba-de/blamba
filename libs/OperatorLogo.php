@@ -36,7 +36,7 @@ class OperatorLogo
 		}
 	}
 
-	static function convert_to_nokia_sms_operator(string $logo_filename, int $mcc = 262, int $mnc = 42, string $additional_im_params = "-threshold 0 -negate")
+	static function convert_to_nokia_sms_operator(string $logo_filename, int $mcc = 901, int $mnc = 70, string $additional_im_params = "-threshold 0 -negate")
 	{
 		// This call will result in an Operator Logo:
 		// WDP Port number 0x1582	Operator Logo

@@ -187,6 +187,10 @@ END:VCALENDAR";
 		if (strlen($sms_from) == 4)
 			return true;
 
+		// C3GSM temporary numbers for unregistered devices
+		if (strlen($sms_from) == 10 && $sms_from[0] != "+")
+			return true;
+
 		// German cellular networks (covered by flatrate billing)
 		if (in_array(substr($sms_from, 0, 6), [
 			"+49151",
