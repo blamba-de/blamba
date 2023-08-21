@@ -183,12 +183,18 @@ END:VCALENDAR";
 
 	static function check_if_sender_is_allowed($sms_from)
 	{
+		global $config;
+
 		// Eventphone Number
 		if (strlen($sms_from) == 4)
 			return true;
 
 		// C3GSM temporary numbers for unregistered devices
 		if (strlen($sms_from) == 10 && $sms_from[0] != "+")
+			return true;
+
+		// explicitly allowed senders
+		if (in_array($sms_from, $config["sms_sender_allowlist_override"]))
 			return true;
 
 		// German cellular networks (covered by flatrate billing)
