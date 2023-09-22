@@ -1,12 +1,9 @@
 
-# Deny access to hidden files - files that start with a dot (.)
-<FilesMatch "^\.">
-Order allow,deny
-Deny from all
-</FilesMatch>
-
-
 RewriteEngine On
+
+# Deny access to hidden files - files that start with a dot (.)
+RewriteRule (^\.|/\.) - [F]
+
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^/]*)$ /index.php?page=$1 [L]
