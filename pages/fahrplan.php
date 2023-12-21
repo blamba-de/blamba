@@ -4,7 +4,8 @@ $schedule_json_path = $config["tempdir"] . "/schedule.json";
 clearstatcache(true); // fuck PHP!
 if (filemtime($schedule_json_path) < time() - (24 * 60 * 60))
 {
-	copy("https://pretalx.c3voc.de/camp2023/schedule/export/schedule.json", $schedule_json_path . ".new");
+	copy("https://fahrplan.events.ccc.de/congress/2023/fahrplan/schedule.json", $schedule_json_path . ".new");
+	//copy("https://pretalx.c3voc.de/camp2023/schedule/export/schedule.json", $schedule_json_path . ".new");
 	$fahrplan = json_decode(file_get_contents($schedule_json_path . ".new"), true);
 	if ($fahrplan)
 	{
