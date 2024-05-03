@@ -11,19 +11,19 @@ class Content
 		switch ($type)
 		{
 			case 'rtttl':
-				return 'Monophone Klingeltöne (RTTTL)';
+				return 'Monophonic ringtones (RTTTL)';
 			case 'polyphonic-ring':
-				return 'Polyphone Klingeltöne (MIDI)';
+				return 'Polyphonic ringtones (MIDI)';
 			case 'operator-logo':
-				return 'Betreiberlogos';
+				return 'Operator logos';
 			case 'splash-logo':
-				return 'Splashlogos';
+				return 'Splash logos';
 			case 'amr':
-				return 'Real Klingeltöne (AMR)';
+				return 'Real ringtones (AMR)';
 			case 'j2me':
-				return 'Anwendungen/Spiele (J2ME)';
+				return 'Applications/games (J2ME)';
 			case 'bitmap':
-				return 'Farbige Logos';
+				return 'Color logos';
 			default:
 				return $type;
 		}
@@ -54,7 +54,7 @@ class Content
 
 		if ($content === null)
 		{
-			SMS::send_text_sms($gateway, $sender, "Der Inhalt " . $content_id . " wurde nicht gefunden. Versuche es bitte erneut.");
+			SMS::send_text_sms($gateway, $sender, "The content " . $content_id . " could not be found. Please try again.");
 			return false;
 		}
 
@@ -83,7 +83,7 @@ class Content
 				$sms = WAPPush::generate_wap_push($wappush["url"], $wappush["name"]);
 				break;
 			default:
-				SMS::send_text_sms($gateway, $sender, "Der Inhalt " . $content_id . " kann leider nicht per SMS angefordert werden. Probier es ueber www.blamba.de.");
+				SMS::send_text_sms($gateway, $sender, "The content " . $content_id . " cannot be requested via SMS. Please use www.blamba.de.");
 				return true;
 				break;
 		}

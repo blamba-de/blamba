@@ -46,8 +46,8 @@
 										{% if item.type == "rtttl" or item.type == "polyphonic-ring" %}
 										<tr>
 											<td align="left" valign="middle" class="text">{{ '%05d'|format(item.id) }}. <a class="cntb" href="/{{ type }}/details/{{ '%05d'|format(item.id) }}">{{ item.name }}</a></td>
-											<td align="center" valign="middle"><a class="cntb" href="javascript:play_midi('/{{ type }}/preview/{{ '%05d'|format(item.id) }}')"><img src="./assets/rt_icon.gif" border="0" alt="Probehören" title="Probehören"></a></td>
-											<td align="left" valign="middle"><a class="cnt" href="/{{ type }}/details/{{ '%05d'|format(item.id) }}"><img src="./assets/aufshandy_icon.gif" border="0" alt="Auf's Handy" title="Auf's Handy"></a></td>
+											<td align="center" valign="middle"><a class="cntb" href="javascript:play_midi('/{{ type }}/preview/{{ '%05d'|format(item.id) }}')"><img src="./assets/rt_icon.gif" border="0" alt="Play" title="Play"></a></td>
+											<td align="left" valign="middle"><a class="cnt" href="/{{ type }}/details/{{ '%05d'|format(item.id) }}"><img src="./assets/aufshandy_icon.gif" border="0" alt="Send to phone" title="Send to phone"></a></td>
 										</tr>
 										{% endif %}
 
@@ -59,7 +59,7 @@
 												{{ '%05d'|format(item.id) }}. <a class="cntb" href="/{{ type }}/details/{{ '%05d'|format(item.id) }}">{{ item.name }}<br>
 												<img src="/{{ type }}/preview/{{ '%05d'|format(item.id) }}" height="208"></a>
 											</td>
-											<td align="left" valign="middle"><a class="cnt" href="/{{ type }}/details/{{ '%05d'|format(item.id) }}"><img src="./assets/aufshandy_icon.gif" border="0" alt="Auf's Handy" title="Auf's Handy"></a></td>
+											<td align="left" valign="middle"><a class="cnt" href="/{{ type }}/details/{{ '%05d'|format(item.id) }}"><img src="./assets/aufshandy_icon.gif" border="0" alt="Send to phone" title="Send to phone"></a></td>
 										{% if (loop.index0 % 2) == 1 %}
 										</tr>
 										{% endif %}
@@ -71,7 +71,7 @@
 											<td align="center" valign="middle">
 												<img src="/{{ type }}/preview/{{ '%05d'|format(item.id) }}" height="42" class="img-nearest">
 											</td>
-											<td align="left" valign="middle"><a class="cnt" href="/{{ type }}/details/{{ '%05d'|format(item.id) }}"><img src="./assets/aufshandy_icon.gif" border="0" alt="Auf's Handy" title="Auf's Handy"></a></td>
+											<td align="left" valign="middle"><a class="cnt" href="/{{ type }}/details/{{ '%05d'|format(item.id) }}"><img src="./assets/aufshandy_icon.gif" border="0" alt="Send to phone" title="Send to phone"></a></td>
 										</tr>
 										{% endif %}
 
@@ -81,13 +81,13 @@
 											<td align="center" valign="middle">
 												<!--<img src="/{{ type }}/preview/{{ '%05d'|format(item.id) }}" height="42" class="img-nearest">-->&nbsp;
 											</td>
-											<td align="left" valign="middle"><a class="cnt" href="/{{ type }}/details/{{ '%05d'|format(item.id) }}"><img src="./assets/aufshandy_icon.gif" border="0" alt="Auf's Handy" title="Auf's Handy"></a></td>
+											<td align="left" valign="middle"><a class="cnt" href="/{{ type }}/details/{{ '%05d'|format(item.id) }}"><img src="./assets/aufshandy_icon.gif" border="0" alt="Send to phone" title="Send to phone"></a></td>
 										</tr>
 										{% endif %}
 
 										{% else %}
 											<tr>
-												<td colspan="3">Bisher keine eingepflegt. Das kann ja noch werden...</td>
+												<td colspan="3">No content yet. Please feel free to add some :)</td>
 											</tr>
 										{% endfor %}
 

@@ -145,17 +145,17 @@ END:VCALENDAR";
 				$smscount++;
 				if ($smscount > 5)
 				{
-					$error .= "Zu viele Mitteilungen (" . $smscount . ")\n";
+					$error .= "To many messages (" . $smscount . ")\n";
 				}
 
 				if (@hex2bin($line) === false)
 				{
-					$error .= "Hex-Decoding in Zeile " . ($linecount + 1) . " fehlgeschlagen\n";
+					$error .= "Hex decoding of line " . ($linecount + 1) . " failed\n";
 				}
 
 				if (strlen(@hex2bin($line)) > 140)
 				{
-					$error .= "Zeile " . ($linecount + 1) . " ist länger als 140 Bytes\n";
+					$error .= "Line " . ($linecount + 1) . " is long than 140 bytes\n";
 				}
 		 	}
 		}
@@ -247,7 +247,7 @@ END:VCALENDAR";
 				if (Device::check_registration_token($gateway, $match[1], $sms_from))
 				{
 					Logging::log("check_registration_token", $sms_message, $sms_from);
-					SMS::send_text_sms($gateway, $sms_from, "Deine Anmeldung war erfolgreich! Willkommen bei Blamba!");
+					SMS::send_text_sms($gateway, $sms_from, "Your registration was successful! Welcome to Blamba!");
 					return true;
 				}
 			}
@@ -265,6 +265,6 @@ END:VCALENDAR";
 			}
 		}
 
-		SMS::send_text_sms($gateway, $sms_from, "Deine SMS wurde leider nicht verstanden! Bitte versuche es erneut. Du musst nicht auf Gross- und Kleinschreibung achten.");
+		SMS::send_text_sms($gateway, $sms_from, "Your SMS could not be decoded! Please try again. The messages are _not_ case-sensitive.");
 	}
 }

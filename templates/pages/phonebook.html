@@ -13,7 +13,7 @@
 						<tr>
 							<td height="17" class="headtop" width="5"><img src="./assets/trans.gif" width="5" height="1" border="0" alt=""></td>
 							<td class="headtop" align="left">
-								<a class="headlink">Telefonbuch</a>
+								<a class="headlink">Phonebook</a>
 							</td>
 							<td height="17" width="9" style="background-image:url(./assets/ecke_head.gif); background-repeat:no-repeat;"></td>
 						</tr>
@@ -43,10 +43,10 @@
 										</tr>
 										<tr>
 											<td class="text" colspan="3">
-												Blamba! bietet ueber WAP ein Gateway auf das <a href="https://guru3.eventphone.de/event.php/phonebook" target="_blank">Eventphone GURU3 Telefonbuch</a> an:<br><br>
+												Blamba! offers a WAP UI for the <a href="https://guru3.eventphone.de/event.php/phonebook" target="_blank">Eventphone GURU3 phonebook</a>:<br><br>
 												<img src="/assets/phonebook.jpg" width="300px" alt="Photo of Nokia 6310i, showing the WAP phonebook">
 												<br><br>
-												Unter <a href="http://wap.blamba.de/ep/" target="_blank">http://wap.blamba.de/ep/</a> kann per WAP direkt vom Handy gesucht werden.
+												Open <a href="http://wap.blamba.de/ep/" target="_blank">http://wap.blamba.de/ep/</a> via WAP on your phone to search for contacts.
 											</td>
 										</tr>
 										<tr>
@@ -57,7 +57,7 @@
 										{% if data != "" %}
 										<tr>
 											<td class="text" colspan=3>
-												Rohdaten: <br>
+												Raw data: <br>
 												{{ include('pages/include-sms-pdu-decode.html') }}
 											</td>
 										</tr>
@@ -66,7 +66,7 @@
 										<tr>
 											<td class="text" colspan=3>
 												<hr>
-												Lesezeichen für das Eventphone Telefonbuch aufs Handy schicken:
+												Send a bookmark for the phonebook to your device:
 											</td>
 										</tr>
 
@@ -107,7 +107,7 @@
 
 		if (count > 5)
 		{
-			alert("Mehr als 5 Einträge ausgewählt. \nDie Kalendereinträge werden per SMS versendet. \nUm eine Überlastung des Netzwerkes und deines Handys zu verhindern, ist die maximale Anzahl an Einträgen limitiert.");
+			alert("You selected more than 5 entries. \nCalender entries will be sent via SMS. \nTo prevent a denial of service of both the network and your phone, the maximum number of entries is limited.");
 			$(event.target).prop( "checked", false );
 			return false;
 		}

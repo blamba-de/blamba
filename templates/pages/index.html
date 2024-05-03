@@ -21,7 +21,7 @@
                                   <tr>
                                     <td height="17" class="headtop" width="5"><img src="./assets/trans.gif" width="5" height="1" border="0" alt=""></td>
                                     <td class="headtop" align="left">
-                                      <a class="headlink" href="/">TOP KLINGELTÖNE</a>
+                                      <a class="headlink" href="/">TOP RINGTONES</a>
                                     </td>
                                     <td height="17" width="9" style="background-image:url(./assets/ecke_head.gif); background-repeat:no-repeat;"></td>
                                   </tr>
@@ -51,8 +51,8 @@
                                           {% for item in top_poly %}
                                           <tr>
                                             <td align="left" valign="middle" class="text">{{ '%05d'|format(item.id) }}. <a class="cntb" href="/{{ item.type }}/details/{{ '%05d'|format(item.id) }}">{{ item.name }}</a></td>
-                                            <td align="center" valign="middle"><a class="cntb" href="javascript:play_midi('/{{ item.type }}/preview/{{ '%05d'|format(item.id) }}')"><img src="./assets/rt_icon.gif" border="0" alt="Probehören" title="Probehören"></a></td>
-                                            <td align="left" valign="middle"><a class="cnt" href="/{{ item.type }}/details/{{ '%05d'|format(item.id) }}"><img src="./assets/aufshandy_icon.gif" border="0" alt="Auf's Handy" title="Auf's Handy"></a></td>
+                                            <td align="center" valign="middle"><a class="cntb" href="javascript:play_midi('/{{ item.type }}/preview/{{ '%05d'|format(item.id) }}')"><img src="./assets/rt_icon.gif" border="0" alt="Listen" title="Listen"></a></td>
+                                            <td align="left" valign="middle"><a class="cnt" href="/{{ item.type }}/details/{{ '%05d'|format(item.id) }}"><img src="./assets/aufshandy_icon.gif" border="0" alt="Send to phone" title="Send to phone"></a></td>
                                           </tr>
                                           {% endfor %}
                                           <tr>
@@ -64,7 +64,7 @@
                                         <tbody>
                                           <tr>
                                             <td><img src="./assets/trans.gif" width="10" height="25" border="0" alt=""></td>
-                                            <td valign="top"><a class="more" href="/polyphonic-ring">Alle Klingeltöne zeigen!</a></td>
+                                            <td valign="top"><a class="more" href="/polyphonic-ring">Show all ringtones!</a></td>
                                           </tr>
                                           <tr>
                                             <td colspan="2"><img src="./assets/trans.gif" width="1" height="1" border="0" alt=""></td>
@@ -118,12 +118,12 @@
                                         <tbody>
                                           <tr>
                                             <td align="middle">
-                                              Schicke eine SMS mit <br><b>REGISTER {{ '%06d'|format(registration_token) }}</b><br> an die <b>{{ config.smpp_sender_msn }}</b>!
+                                              Send a SMS with text "REGISTER {{ '%06d'|format(registration_token) }}" to {{ config.smpp_sender_msn }}!
                                             </td>
                                           </tr>
 
                                           <tr>
-                                            <td align="left" valign="middle" class="text">Angemeldete Geräte:</td>
+                                            <td align="left" valign="middle" class="text">Registered devices:</td>
                                           </tr>
                                           {% for device in devices %}
                                           <tr>
@@ -132,15 +132,15 @@
                                           </tr>
                                           {% else %}
                                           <tr>
-                                            <td align="left" valign="middle" class="text">Bisher kein Gerät angemeldet.</td>
+                                            <td align="left" valign="middle" class="text">No device registered yet!</td>
                                             <td align="left" valign="middle"></td>
                                           </tr>
                                           {% endfor %}
                                           
                                           <tr>
                                             <td colspan="3" class="text">
-                                              Geräte werden mit der Anmelde-SMS in deiner Browser-Session angemeldet.<br>
-                                              Um ein bestehendes Gerät in einem anderen Browser zu verwenden, schicke einfach eine weitere SMS mit dem neuen Anmeldecode.
+                                              The registration SMS will register a device to your browser session/cookie. <br>
+                                              To use an already registered device on a different browser, just re-send the registration SMS with the new registration token.
                                             </td>
                                           </tr>
                                         </tbody>
@@ -172,7 +172,7 @@
                           <tr>
                             <td height="17" class="headtop" width="5"><img src="./assets/trans.gif" width="5" height="1" border="0" alt=""></td>
                             <td class="headtop" align="left">
-                              <a class="headlink" href="/">TOP FARBIGE LOGOS</a>
+                              <a class="headlink" href="/">TOP COLOR LOGOS</a>
                             </td>
                             <td height="17" width="9" style="background-image:url(./assets/ecke_head.gif); background-repeat:no-repeat;"></td>
                           </tr>
@@ -227,7 +227,7 @@
                                   </tr>
                                   <tr>
                                     <td align="left" valign="top"><img src="./assets/trans.gif" width="11" height="1" border="0" alt=""></td>
-                                    <td align="left" valign="top" colspan="6"><a class="more" href="/bitmap">Alle farbigen Logos zeigen!</a></td>
+                                    <td align="left" valign="top" colspan="6"><a class="more" href="/bitmap">Show all color logos!</a></td>
                                   </tr>
                                   <tr>
                                     <td align="left" valign="top" colspan="7"><img src="./assets/trans.gif" width="1" height="5" border="0" alt=""></td>
@@ -254,7 +254,7 @@
                           <tr>
                             <td height="17" class="headtop" width="5"><img src="./assets/trans.gif" width="5" height="1" border="0" alt=""></td>
                             <td class="headtop" align="left">
-                              <a class="headlink" href="">TOP BETREIBERLOGOS</a>
+                              <a class="headlink" href="">TOP OPERATOR LOGOS</a>
                             </td>
                             <td height="17" width="9" style="background-image:url(./assets/ecke_head.gif); background-repeat:no-repeat;"></td>
                           </tr>
@@ -292,7 +292,7 @@
                                       <table cellpadding="0" cellspacing="0" border="0" width="592">
                                         <tbody>
                                           <tr>
-                                            <td valign="bottom" height="20"><img src="./assets/trans.gif" width="20" height="1" border="0" alt=""><a class="more" href="/operator-logo/">Alle Betreiberlogos zeigen!</a></td>
+                                            <td valign="bottom" height="20"><img src="./assets/trans.gif" width="20" height="1" border="0" alt=""><a class="more" href="/operator-logo/">Show all operator logos!</a></td>
                                           </tr>
                                           <tr>
                                             <td align="left" valign="top"><img src="./assets/trans.gif" width="1" height="5" border="0" alt=""></td>

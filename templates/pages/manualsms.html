@@ -13,7 +13,7 @@
 						<tr>
 							<td height="17" class="headtop" width="5"><img src="./assets/trans.gif" width="5" height="1" border="0" alt=""></td>
 							<td class="headtop" align="left">
-								<a class="headlink">Manuelle SMS versenden</a>
+								<a class="headlink">Custom SMS transmission</a>
 							</td>
 							<td height="17" width="9" style="background-image:url(./assets/ecke_head.gif); background-repeat:no-repeat;"></td>
 						</tr>
@@ -42,14 +42,15 @@
 											<td align="left" valign="top"><img src="./assets/trans.gif" width="30" height="1" border="0" alt=""></td>
 										</tr>
 										<tr>
-											<td class="text">Hier kannst du händisch SMS mit 8bit Binärdaten an deine registrierten Geräte schicken.
-											Beispielaufrufe fuer <a href="https://www.mikekohn.net/file_formats/ringtonetools.php" target="_blank">ringtonetools</a>: <br>
+											<td class="text">
+												You can use this tool to send custom SMS with 8-bit binary data to your registered devices.
+											Example invocations for <a href="https://www.mikekohn.net/file_formats/ringtonetools.php" target="_blank">ringtonetools</a>: <br>
 											<pre>ringtonetools -u -s 280 -intype rtttl -outtype nokia monkey.txt -
 ringtonetools -u -s 280 -intype gif -outtype nokia fox.gif -</pre>
-											Pro Zeile wird eine SMS verschickt, jede Zeile darf nur Hex-Ziffern enthalten.<br>
-											Leere Zeilen werden ignoriert. Zeilen mit //SCKL-Header werden nicht unterstützt.<br>
-											Maximal 5 SMS pro Aufruf. Maximal 140 Bytes pro Nachricht.<br>
-											<b>Fehlerhafte Nachrichten können dein Handy zum Absturz bringen oder sogar beschädigen. Be careful!</b>
+											Each line is getting sent as a seperate SMS. Each line must only contain hex digits.<br>
+											Empty lines will be ignored. Lines with //SCKL header are not supported.<br>
+											Maximum of 5 SMS per invocation. Maximum of 140 bytes per SMS.<br>
+											<b>Malformed SMS can crash or even damage (if they are stored) your phone. Be careful!</b>
 											</td>
 										</tr>
 										<tr>

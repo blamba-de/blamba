@@ -5,65 +5,68 @@
 {% endblock %}
 {% block content %}
 <p>
-    <b>Was ist das?</b><br>
-    Ein Klingelton-Anbieter, angelehnt an die bekannten Anbieter aus den frühen 2000ern.
+    <b>What is this?</b><br>
+    A ringtone provider, similar to popular commercial providers from the early 2000s.
 </p>
 <p>
-    <b>Ist das echt?</b><br>
-    Ja! Wenn du ein unterstütztes Mobiltelefon hast, kannst du die Inhalte links im Menü direkt auf dein Handy schicken lassen.
+    <b>Is this real?</b><br>
+    Yes! If you have a supported mobile phone (mostly Nokia at this point), you can send all the content available directly to your phone.
 </p>
 <p>
-    <b>Wo funktioniert das?</b><br>
-    Blåmba braucht eine Methode um rohe SMS direkt an Teilnehmer*innen zu verschicken. Ohne Kostenaufwand funktioniert das leider nur in privaten Netzen, wie z.B. beim Chaos Communication Camp 2023.
+    <b>Where does this work?</b><br>
+    Blåmba needs some mechanism to send raw binary data to participants. We can do this without creating any costs in the private GSM networks at hacker conferences (like CCC events or EMF).
 </p>
 <p>
-    <b>Kostet das wirklich Geld?</b><br>
-    Nein :)
+    <b>Does this cost money?</b><br>
+    No! 
+    No sneaky subscriptions, either :)
 </p>
 <p>
-    <b>Welche Handys werden unterstützt?</b><br>
-    Bei der Entwicklung getestet wurden Nokia 6310i, Nokia 6220 und Nokia 6233. <br>
-    Viele ähnliche Telefone von Nokia sollten auch funktionieren. <br>
-    Andere Hersteller (Sony Ericsson, etc.) sind mangels Telefonen nicht implementiert.
-    Falls du ein passendes hast und weisst, wie die Datenübertragung funktionieren kann, <a href="https://github.com/blamba-de/blamba/issues" target="_blank">melde dich bitte!</a>
+    <b>Which phones are supported?</b><br>
+    Nokia 6310i, Nokia 6220 and Nokia 6233 were used for development. <br>
+    Many other Nokia phones will work fine as well. <br>
+    Other vendors (Sony Ericsson, etc.) aren't implemented due to a lack of devices (and knowledge about them).
+    If you have such a phone and know how to encode data for it, <a href="https://github.com/blamba-de/blamba/issues" target="_blank">please contact us!</a>
 </p>
 <p>
-    <b>Mein Handy braucht ein WAP/WSP-Gateway / eine IP-Adresse in den Einstellungen.</b><br>
-    Blamba betreibt ein WAP-Gateway, welches aus den Netzen von Telekom, o2, Vodafone und dem CCC-Eventnetz genutzt werden kann.<br>
-    Die IPv4-Adresse lautet: <code>157.90.145.189</code> (kein Benutzername/Passwort).<br>
-    Falls du einen anderen Netzbetreiber nutzt, <a href="https://github.com/blamba-de/blamba/issues" target="_blank">schreib uns eine Nachricht</a> mit deiner öffentlichen IPv4-Adresse oder der AS-Nummer deines Anbieters.
+    <b>My phone needs a WAP/WSP gateway / IP address settings!</b><br>
+    Blåmba operates a public WAP gateway, which can be used via GPRS from the phone. <br>
+    It uses an IP / ASN-based allowlist to prevent abuse. Most german phone providers and the CCC event network are allowed.<br>
+
+    The IPv4 address is: <code>157.90.145.189</code> (no username/password).<br>
+    If you're using a different carrier/provider, please <a href="https://github.com/blamba-de/blamba/issues" target="_blank">write us a message</a> with your public IPv4 address or the ASN of your carrier.
 </p>
 
 <p>
-    <b>Wie funktioniert das technisch?</b><br>
-    Betreiberlogos und RTTTL-Klingeltöne werden <a href="https://en.wikipedia.org/wiki/User_Data_Header" target="_blank">per SMS versendet</a>.<br>
-    MIDI-Dateien, J2ME-Anwendungen und Spiele werden per <a href="https://de.wikipedia.org/wiki/WAP-Push" target="_blank">WAP-Push</a> (quasi Link per SMS) versendet.<br>
-    Der Sourcecode ist links im Menü verlinkt.
+    <b>How does this work?</b><br>
+    Operator logos und RTTTL ringtones will be <a href="https://en.wikipedia.org/wiki/User_Data_Header" target="_blank">sent via SMS</a>.<br>
+    MIDI files, J2ME applications and games will be sent via <a href="https://de.wikipedia.org/wiki/WAP-Push" target="_blank">WAP-Push</a> (basically a special link via SMS).<br>
+    If you're interested in the nitty-gritty details, the source code is linked in the menu.
 </p>
 <p>
-    <b>Ich habe eine coole Grafik/Klingelton/etc.</b><br>
-    Super! Stell bitte einen Pull-Request auf dem <a href="https://github.com/blamba-de/blamba-content-ingest" target="_blank">blamba-content-ingest Repository</a>.
+    <b>I have a cool logo/ringtone/game/application.</b><br>
+    Awesome! Please send a pull request to the <a href="https://github.com/blamba-de/blamba-content-ingest" target="_blank">blamba-content-ingest repository</a>.
 </p>
 <p>
-    <b>Ich habe eine Sicherheitslücke gefunden.</b><br>
-    Schick bitte eine E-Mail an <a href="mailto:blamba@tbspace.de" target="_blank">blamba@tbspace.de</a>.
+    <b>I found a security vulnurability.</b><br>
+    Please send an e-mail to <a href="mailto:blamba@tbspace.de" target="_blank">blamba@tbspace.de</a>.
 </p>
 
 <p>
-    <b>Mein Handy versteht kein WAP Push (z.B. iPhone). Was kann ich tun?</b><br>
-    Schreib in der SMS "plain" vor die Katalognummer ("plain 12345").<br>
-    Blåmba! schickt dir dann eine HTTP-URL per Text-SMS. 
+    <b>My phone doesn't support WAP push (e.g. iPhone). What can I do?</b><br>
+    Prefix the catalog number with "plain" ("plain 12345").<br>
+    Blåmba! will then send a regular text SMS with an HTTP-URL.
 </p>
 
 <p id="operatorlogos">
-    <b>Was sind Betreiberlogos? Was sind Gruppenlogos?</b><br>
-    Betreiberlogos sind kleine Logos, welche einem bestimmten Mobilfunknetz zugeordnet sind. <br>
-    Wenn sich das Handy mit dem entsprechenden Netz verbindet, wird auf dem Home-Bildschirm das Betreiberlogo angezeigt.<br>
-    Der Mobilfunkanbieter wird anhand der weltweit eindeutigen <a href="https://en.wikipedia.org/wiki/Mobile_network_codes_in_ITU_region_2xx_(Europe)#Germany_%E2%80%93_DE" target="_blank">MCC/MNC Kombination</a> erkannt. <br>
-    Das CCC Event Netz verwendet 262/42. Die Telekom nutzt 262/01.
+    <b>What are operator logos? What are group logos?</b><br>
+    Operator logos are little logos, which are assigned to a specific mobile network. <br>
+    When a phone connects to a specific network, it will display the logo for this carrier on the home screen.<br>
+    The carrier/network will be detected using the globally unique <a href="https://en.wikipedia.org/wiki/Mobile_network_codes_in_ITU_region_2xx_(Europe)#Germany_%E2%80%93_DE" target="_blank">MCC/MNC IDs</a>. <br>
+    The CCC Event network usually uses 262/42. Deutsche Telekom uses 262/01.
     <br><br>
-    Gruppenlogos nutzen das gleiche Grafikformat, können aber Kontakten und Kontaktgruppen auf dem Telefon zugeordnet werden.
-    Beim Anruf eines solchen Kontaktes erscheint dann das Gruppenlogo.
+    Group logos use the same graphics format and encoding, but can be assigned to contacts and contact groups.
+    They will then be displayed when such a contact or contact group calls. 
 </p>
 <p>
     &nbsp;

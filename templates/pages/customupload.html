@@ -13,7 +13,7 @@
 						<tr>
 							<td height="17" class="headtop" width="5"><img src="./assets/trans.gif" width="5" height="1" border="0" alt=""></td>
 							<td class="headtop" align="left">
-								<a class="headlink">Dateiupload</a>
+								<a class="headlink">File upload</a>
 							</td>
 							<td height="17" width="9" style="background-image:url(./assets/ecke_head.gif); background-repeat:no-repeat;"></td>
 						</tr>
@@ -37,9 +37,8 @@
 								<table cellpadding="3" cellspacing="0" border="0" width="500">
 									<tbody>
 										<tr>
-											<td class="text" colspan=3>Hier kannst du eigene Inhalte an deine registrierten Geräte schicken.<br><br>
-											<b>Die hochgeladenen Dateien werden auf dem Server gespeichert und unter einer bestimmten URL bereitgestellt. Sie sind damit quasi öffentlich!</b><br>
-											Bitte lade keine geschützten, obszönen oder verbotenen Inhalte hoch. 
+											<td class="text" colspan=3>You can use this form to send custom content to your device.<br><br>
+											<b>Selected files will be uploaded and saved on the Blamba server and will be publicly availably under a specific URL!</b><br>Please do not upload copyrighted, obscene or illegal content!
 											</td>
 										</tr>
 										<tr>
@@ -61,42 +60,42 @@
 										</tr>
 										{% endif %}
 										<tr>
-											<td class="text"><label for="type">Inhaltstyp:</label></td>
+											<td class="text"><label for="type">Content type:</label></td>
 											<td colspan=2>
 												<select name="type" id="type">
-													<option value="operator-logo">Betreiberlogo (S/W, 72x14)</option>
-													<option value="group-logo">Gruppenlogo (S/W, 72x14)</option>
-													<option value="rtttl">Monophoner Klingelton (RTTTL)</option>
-													<option value="polyphonic-ring">Polyphoner Klingelton (MIDI)</option>
-													<option value="bitmap">Farbiges Logo (Grafikdatei)</option>
-													<option value="j2me">Java-Applikation</option>
+													<option value="operator-logo">Operator logo (B/W, 72x14)</option>
+													<option value="group-logo">Group logo (B/W, 72x14)</option>
+													<option value="rtttl">Monophonic ringtone (RTTTL)</option>
+													<option value="polyphonic-ring">Polyphonic ringtone (MIDI)</option>
+													<option value="bitmap">Color logo (Bitmap)</option>
+													<option value="j2me">Java/J2ME application</option>
 												</select>
 											</td>
 										</tr>
 
 										<tr id="fileupload-graphics">
-											<td class="text"><label for="file-graphics">Bilddatei:</label></td>
+											<td class="text"><label for="file-graphics">Image:</label></td>
 											<td colspan=2>
 												<input type="file" id="file-graphics" name="file-graphics" accept="image/png, image/jpeg, image/gif, image/bmp">
 											</td>
 										</tr>
 
 										<tr id="fileupload-midi">
-											<td class="text"><label for="file-midi">MIDI-Datei:</label></td>
+											<td class="text"><label for="file-midi">MIDI file:</label></td>
 											<td colspan=2>
 												<input type="file" id="file-midi" name="file-midi" accept="audio/midi, audio/x-midi">
 											</td>
 										</tr>
 
 										<tr id="fileupload-rtttl">
-											<td class="text"><label for="file-rtttl">RTTTL-Datei:</label></td>
+											<td class="text"><label for="file-rtttl">RTTTL file:</label></td>
 											<td colspan=2>
 												<input type="file" id="file-rtttl" name="file-rtttl" accept="text/plain">
 											</td>
 										</tr>
 
 										<tr id="fileupload-java">
-											<td class="text"><label for="file-java">Java-Applet:</label></td>
+											<td class="text"><label for="file-java">Java applet:</label></td>
 											<td colspan=2>
 												<input type="file" id="file-java" name="file-java" accept="application/java-archive">
 											</td>

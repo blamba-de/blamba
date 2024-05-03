@@ -7,12 +7,12 @@
 		<table cellpadding="3" cellspacing="0" border="0" width="500">
 			{% if content.type == "operator-logo" %}
 			<tr>
-				<td class="text"><a href="/faq#operatorlogos" target="_blank">Typ</a>:</td>
+				<td class="text"><a href="/faq#operatorlogos" target="_blank">Type</a>:</td>
 				<td align="left">
 					<input type="radio" class="logotype" id="operator-logo" name="logotype" value="operator-logo" checked>
-					<label for="operator-logo">Betreiberlogo</label>
+					<label for="operator-logo">Operator logo</label>
 					<input type="radio" class="logotype" id="group-logo" name="logotype" value="group-logo">
-					<label for="group-logo">Gruppenlogo</label>
+					<label for="group-logo">Group logo</label>
 				</td>
 			</tr>
 			<tr>
@@ -23,12 +23,12 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="text">Logo invertieren:</td>
+				<td class="text">Invert logo:</td>
 				<td align="left">
 					<input type="radio" class="invert" id="invert-no" name="invert" value="false" checked>
-					<label for="invert-no">Nein</label>
+					<label for="invert-no">No</label>
 					<input type="radio" class="invert" id="invert-yes" name="invert" value="true">
-					<label for="invert-yes">Ja</label>
+					<label for="invert-yes">Yes</label>
 				</td>
 			</tr>
 			{% endif %}
@@ -36,29 +36,29 @@
 			{{ include('pages/include-phone-select.html') }}
 			<tr>
 				{% if content.type == "rtttl" %}
-					<td class="text">Übertragungsart:</td>
+					<td class="text">Transmission format:</td>
 					<td align="left">
-						SMS (<a href="https://en.wikipedia.org/wiki/Smart_Messaging" target="_blank">Nokia Smart Messaging</a>, WDP Port 1581)
+						SMS (<a href="https://en.wikipedia.org/wiki/Smart_Messaging" target="_blank">Nokia Smart Messaging</a>, WDP port 1581)
 					</td>
 				{% endif %}
 
 				{% if content.type == "operator-logo" %}
-					<td class="text">Übertragungsart:</td>
+					<td class="text">Transmission format:</td>
 					<td align="left">
-						SMS (<a href="https://en.wikipedia.org/wiki/Smart_Messaging" target="_blank">Nokia Smart Messaging</a>, WDP Port 1582)
+						SMS (<a href="https://en.wikipedia.org/wiki/Smart_Messaging" target="_blank">Nokia Smart Messaging</a>, WDP port 1582)
 					</td>
 				{% endif %}
 
 				{% if content.type == "polyphonic-ring" %}
-					<td class="text">Übertragungsart:</td>
+					<td class="text">Transmission format:</td>
 					<td align="left">
-						WAP-Push (Dienstmitteilung)
+						WAP Push SI (Service Indication)
 					</td>
 				{% endif %}
 				{% if content.type == "bitmap" %}
-					<td class="text">Übertragungsart:</td>
+					<td class="text">Transmission format:</td>
 					<td align="left">
-						WAP-Push (Dienstmitteilung)
+						WAP Push SI (Service Indication)
 					</td>
 				{% endif %}
 			</tr>

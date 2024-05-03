@@ -13,7 +13,7 @@
 						<tr>
 							<td height="17" class="headtop" width="5"><img src="./assets/trans.gif" width="5" height="1" border="0" alt=""></td>
 							<td class="headtop" align="left">
-								<a class="headlink">Übertragung - {{ content.name }}</a>
+								<a class="headlink">Transmission - {{ content.name }}</a>
 							</td>
 							<td height="17" width="9" style="background-image:url(./assets/ecke_head.gif); background-repeat:no-repeat;"></td>
 						</tr>
@@ -47,15 +47,15 @@
 												
 												<tr>
 													<td colspan="3">
-														Inhalt wird übermittelt!<br><br>
+														Content will be transmitted!<br><br>
 
-														Technische Details: <br>
-														{{ smscount }} SMS-Nachricht(en), {{ smsbytes }} Bytes<br><br>
+														Technical details: <br>
+														{{ smscount }} SMS message(s), {{ smsbytes }} bytes<br><br>
 
 														{{ include('pages/include-sms-pdu-decode.html') }}
 
-														<button onclick="history.back()">zurück zum Inhalt</button>
-														<button onclick="document.location = '/{{ content.type }}/'">zurück zur Übersicht</button>
+														<button onclick="history.back()">back to content</button>
+														<button onclick="document.location = '/{{ content.type }}/'">back to overview</button>
 													</td>
 												</tr>
 											</table>
