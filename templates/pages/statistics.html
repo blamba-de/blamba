@@ -1,0 +1,122 @@
+{% extends "template.html" %}
+
+{% block head %}
+	{{ parent() }}
+{% endblock %}
+{% block content %}
+<table cellpadding="0" cellspacing="0" border="0" width="502">
+	<tbody>
+		<tr>
+			<td align="left" valign="baseline" width="221">
+				<table cellpadding="0" cellspacing="0" border="0" width="221">
+					<tbody>
+						<tr>
+							<td height="17" class="headtop" width="5"><img src="./assets/trans.gif" width="5" height="1" border="0" alt=""></td>
+							<td class="headtop" align="left">
+								<a class="headlink">Statistiken</a>
+							</td>
+							<td height="17" width="9" style="background-image:url(./assets/ecke_head.gif); background-repeat:no-repeat;"></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+			<td align="left" valign="top"><img src="./assets/trans.gif" width="9" height="17" border="0" alt=""></td>
+		</tr>
+	</tbody>
+</table>
+
+<table cellpadding="1" cellspacing="0" border="0" width="502" class="headtop">
+	<tbody>
+		<tr>
+			<td align="center" valign="top">
+				<table cellpadding="0" cellspacing="0" border="0" width="500" height="148" class="whiteline">
+					<tbody>
+						<tr>
+							<td valign="top">
+								<form method="POST" action="/phonebook">
+								<table cellpadding="3" cellspacing="0" border="0" width="500">
+									<tbody>
+										<tr>
+											<td align="left" valign="top"><img src="./assets/trans.gif" width="100px" height="1" border="0" alt=""></td>
+											<td align="left" valign="top"><img src="./assets/trans.gif" height="1" border="0" alt=""></td>
+											<td align="left" valign="top"><img src="./assets/trans.gif" height="1" border="0" alt=""></td>
+										</tr>
+										<tr>
+											<td class="text" colspan="3">
+												Die Blamba! Nutzungsstatistiken sehen derzeit wie folgt aus: 
+												<hr>
+											</td>
+										</tr>
+										<tr>
+											<td class="text" colspan="1" align="right">Registered devices:</td>
+											<td class="text" colspan="2">{{registered_devices}}</td>
+										</tr>
+										<tr>
+											<td class="text" colspan="1" align="right">Received SMS:</td>
+											<td class="text" colspan="2">{{ received_sms }}</td>
+										</tr>
+										<tr>
+											<td class="text" colspan="1" align="right">Sent SMS:</td>
+											<td class="text" colspan="2">{{ sent_sms }}</td>
+										</tr>
+
+										<tr>
+											<td class="text" colspan="1" align="right">Sent WAP Push Indications:</td>
+											<td class="text" colspan="2">{{ sent_wappush }}</td>
+										</tr>
+
+										<tr>
+											<td class="text" colspan="1" align="right">Available Ringtones:</td>
+											<td class="text" colspan="2">{{ available_ringtones }}</td>
+										</tr>
+										<tr>
+											<td class="text" colspan="1" align="right">Available Logos:</td>
+											<td class="text" colspan="2">{{ available_logos }}</td>
+										</tr>
+
+										<tr>
+											<td class="text" colspan="1" align="right">Sent Ringtones:</td>
+											<td class="text" colspan="2">{{ sent_ringtones }}</td>
+										</tr>
+										<tr>
+											<td class="text" colspan="1" align="right">Sent Logos:</td>
+											<td class="text" colspan="2">{{ sent_logos }}</td>
+										</tr>
+
+
+
+										<tr>
+											<td colspan="3"><img src="./assets/trans.gif" width="1" height="9" border="0" alt=""></td>
+										</tr>
+									</tbody>
+								</table>
+								</form>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<script type="text/javascript">
+	$(".js-eventbox").on('change', function(e) {
+	    var events = document.getElementsByClassName("js-eventbox");
+		var count = 0;
+		for (var i = 0; i < events.length; ++i)
+		{
+			if (events[i].checked)
+			{
+				count++;
+			}
+		}
+
+		if (count > 5)
+		{
+			alert("Mehr als 5 Einträge ausgewählt. \nDie Kalendereinträge werden per SMS versendet. \nUm eine Überlastung des Netzwerkes und deines Handys zu verhindern, ist die maximale Anzahl an Einträgen limitiert.");
+			$(event.target).prop( "checked", false );
+			return false;
+		}
+	});
+</script>
+{% endblock %}

@@ -2,7 +2,7 @@
 require_once("bootstrap.php");
 use smpp\{ Address, Smpp, Client as SmppClient, transport\Socket};
 
-$gateway = $db->prepared_fetch_one("SELECT * FROM gateways WHERE id = ?;", "i", 1);
+$gateway = $db->prepared_fetch_one("SELECT * FROM gateways WHERE id = ?;", "i", 6);
 
 $timeout = 1000;
 $debug = true;
@@ -48,6 +48,7 @@ while ($transport->isOpen())
     $sms = $smppClient->readSMS();
     if ($sms)
     {
+	var_dump($sms);
         SMS::parse_inbound_sms($gateway, $sms->message, $sms->source->value);
     }
 
