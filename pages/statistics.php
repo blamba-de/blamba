@@ -3,12 +3,6 @@
 $data = "";
 $success = false;
 
-// Registered devices:</td>
-// Sent SMS:</td>
-// Received SMS:</td>
-// Sent Ringtones:</td>
-// Sent Logos:
-
 $registered_devices = $db->fetch("SELECT COUNT(*) as `sum` FROM `blamba`.`devices`", "sum");
 
 $received_sms = $db->fetch("SELECT COUNT(*) as `sum` FROM `blamba`.`log` WHERE `type` = 'parse_inbound_sms' ", "sum");
@@ -21,7 +15,8 @@ $sent_java = $db->fetch("SELECT SUM(sent) as `sum` FROM `blamba`.`content` WHERE
 $available_ringtones = $db->fetch("SELECT COUNT(*) as `sum` FROM `blamba`.`content` WHERE `type` = 'polyphonic-ring' OR `type` = 'rtttl'", "sum");
 $available_logos = $db->fetch("SELECT COUNT(*) as `sum` FROM `blamba`.`content` WHERE `type` = 'bitmap' OR `type` = 'operator-logo'", "sum");
 
-$num_sms_sent = file_get_contents("num_sms_sent");
+$sent_text_sms = $db->fetch("SELECT COUNT(*) as `sum` FROM `blamba`.`log` WHERE `type` = 'send_text_sms' ", "sum");
+$sent_udh_sms = $db->fetch("SELECT COUNT(*) as `sum` FROM `blamba`.`log` WHERE `type` = 'send_udh_sms' ", "sum");
 
 echo $twig->render('pages/' . $page . '.html',
 [
@@ -34,7 +29,8 @@ echo $twig->render('pages/' . $page . '.html',
 	'available_ringtones' => $available_ringtones,
 	'available_logos' => $available_logos,
 	'received_sms' => $received_sms,
-	'sent_sms' => $num_sms_sent,
+	'sent_text_sms' => $sent_text_sms,
+	'sent_udh_sms' => $sent_udh_sms,
 
 	'devices' => $devices,
 	'registration_token' => $_SESSION['registration_token'],

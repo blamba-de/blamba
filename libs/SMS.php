@@ -4,6 +4,7 @@ class SMS
 	static function send_text_sms($gateway, $destination, $data)
 	{
 		global $db;
+		Logging::log("send_text_sms", $data, $destination);
 		if ($gateway["type"] == "smpp")
 		{
 			$db->prepared_query("INSERT INTO `sms_queue` (`destination`, `type`, `data`, `queued_at`) VALUES (?, 'text', ?, current_timestamp());", "ss", $destination, $data);
@@ -34,6 +35,7 @@ class SMS
 				{
 					$return[] = Kannel::send_udh_sms($gateway, $destination, $line);
 				}
+				Logging::log("send_udh_sms", $line, $destination);
 		 	}
 		}
 
