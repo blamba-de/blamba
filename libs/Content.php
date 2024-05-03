@@ -21,7 +21,7 @@ class Content
 			case 'amr':
 				return 'Real ringtones (AMR)';
 			case 'j2me':
-				return 'Applications/games (J2ME)';
+				return 'Applications/Games (J2ME)';
 			case 'bitmap':
 				return 'Color logos';
 			default:

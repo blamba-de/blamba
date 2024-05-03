@@ -145,7 +145,7 @@ END:VCALENDAR";
 				$smscount++;
 				if ($smscount > 5)
 				{
-					$error .= "To many messages (" . $smscount . ")\n";
+					$error .= "Too many messages (" . $smscount . ")\n";
 				}
 
 				if (@hex2bin($line) === false)
