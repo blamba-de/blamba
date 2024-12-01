@@ -16,9 +16,21 @@ Logging::log("storedwap_media", $_SERVER, $wappush["msn"]);
 // If we know the MSN for this download, let's save the useragent and UAProf URL
 if (!empty($wappush["msn"]))
 {
+    $wapprofile = false;
+    // WAP 2.0 (direct TCP/IP access via HTTP)
     if (!empty($_SERVER["HTTP_X_WAP_PROFILE"] ?? ""))
     {
         $wapprofile = trim($_SERVER["HTTP_X_WAP_PROFILE"] ?? "", '"');
+    }
+    
+    // WAP 1.1 (via WAP gateway/Kannel)
+    if (!empty($_SERVER["HTTP_PROFILE"] ?? ""))
+    {
+        $wapprofile = trim($_SERVER["HTTP_PROFILE"] ?? "", '"');
+    }
+
+    if ($wapprofile)
+    {
         $useragent = $_SERVER["HTTP_USER_AGENT"] ?? "";
         $accept = $_SERVER["HTTP_ACCEPT"] ?? "";
 
