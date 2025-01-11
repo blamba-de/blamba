@@ -29,6 +29,11 @@ class Content
 		}
 	}
 
+	static function pad_content_id($id) 
+	{
+		return str_pad($id, 5, "0", STR_PAD_LEFT);
+	}
+
 	static function handle_sms_content_request($gateway, $sender, $regex_matches)
 	{
 		global $db, $content_path;

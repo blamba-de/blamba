@@ -84,6 +84,21 @@ class WAPPush
 		return bin2hex($bindata);
 	}
 
+	static function generate_wap_push_gif($filename)
+	{
+		$data = [
+			"\x01", // trans id
+			"\x06", // Push
+			"\x02", // Header Length
+			"\x01", // Length
+			"\x9D", // Content type (image/gif)
+		];
+
+		$data[] = file_get_contents($filename);
+
+		// IANA WAP-Push Multimedia Messaging Service port
+		return SMS::generate_udh(2948, implode("", $data));
+	}
 
 	static function generate_stored( $type, $name, $filename, $msn, $data )
 	{
