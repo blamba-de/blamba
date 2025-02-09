@@ -103,6 +103,7 @@ class WAPPush
 	static function generate_stored( $type, $name, $filename, $msn, $data )
 	{
 		global $db;
+		global $config;
 		$uuid = self::generate_wap_push_uuid();
 
 		$data = json_encode($data, JSON_PRETTY_PRINT);
@@ -110,7 +111,7 @@ class WAPPush
 
 		return [
 				"uuid" => $uuid,
-				"url" => "http://wap.blamba.de/wp/" . $uuid . "/" . urlencode($filename),
+				"url" => "http://" . $config["wap_domain"] . "/wp/" . $uuid . "/" . urlencode($filename),
 				"name" => $name
 		];
 	}
