@@ -58,3 +58,5 @@ INSERT INTO `gateways` (`id`, `name`, `enabled`, `token`, `type`, `sender_msn`, 
 13) Setup imagemagick in debootstrap: `apt install debootstrap` then `debootstrap --arch amd64 --include=imagemagick bookworm /opt/bookworm-imagemagick/`
 14) Install sandbox dependancies: `apt install bubblewrap libseccomp-dev`
 15) Compile the bubblewrap wrappers: `cd /var/www/html/vendor-native/bwrap-seccomp && make`
+16) Compile the ringtonetools: `cd /var/www/html/vendor-native/ringtonetools && make`
+17) Give PHP access to your tmp folder: `chown www-data /dev/shm/blamba/`
