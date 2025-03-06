@@ -92,9 +92,9 @@ if (isset($_POST["type"]))
 			}
 			break;
 		case 'j2me':
-			if (($error = sanity_check_file($_FILES["file-j2me"], ["application/java-archive", "application/x-java-applet", "application/java"])) === false)
+			if (($error = sanity_check_file($_FILES["file-java"], ["application/java-archive", "application/x-java-applet", "application/java", "application/zip"])) === false)
 			{
-				$data = save_upload($_FILES["file-j2me"], "j2me", ["jar"], $device["msn"], ["mode" => "custom"]);
+				$data = save_upload($_FILES["file-java"], "j2me", ["jar"], $device["msn"], ["mode" => "custom"]);
 			}
 			break;
 	}
