@@ -1,8 +1,10 @@
-
 RewriteEngine On
 
 # Deny access to hidden files - files that start with a dot (.)
 RewriteRule (^\.|/\.) - [F]
+
+# Allow access to .well-known directory
+RewriteRule ^\.well-known/ - [L]
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
