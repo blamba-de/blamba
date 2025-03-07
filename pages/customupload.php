@@ -2,21 +2,25 @@
 $devices = $db->prepared_fetch("SELECT * FROM devices WHERE user = ?;", "s", session_id());
 
 function sanity_check_file($file, $mime)
-{
-	if ($file["error"])
-		return "Keine Datei ausgewaehlt oder Upload fehlgeschlagen";
+{	
 
-	if ($file["size"] > 512 * 1024)
-		return "Datei zu gross";
+	// check currently disabled as it gives false positives with error code 0
+
+	// if ($file["error"])
+	// 	error_log("File upload error: " . $file["error"]);
+	// 	return "Keine Datei ausgewaehlt oder Upload fehlgeschlagen: ".$file["error"];
+
+	if ($file["size"] > 2048 * 1024)
+		return "Datei zu gross". $file["size"];
 
 	if (!in_array($file["type"], $mime))
-	{
-		return "Falsch uebermittelter MIME-Type";
+	{	
+		return "Falsch uebermittelter MIME-Type: ". $file["type"];
 	}
 
 	if (!in_array(mime_content_type($file['tmp_name']), $mime))
-	{
-		return "Falscher MIME-Type";
+	{	
+		return "Falscher MIME-TypeL ". mime_content_type($file['tmp_name']);
 	}
 
 	return false;
@@ -29,7 +33,8 @@ function sanitize_filename($file, $extensions)
 	$extension = preg_replace('/[^a-z]/', '', strtolower($pathinfo['extension']));
 
 	if (!in_array($extension, $extensions))
-	{
+	{	
+		error_log("Invalid extension: " . $extension);
 		return false;
 	}
 
@@ -40,6 +45,7 @@ function save_upload($file, $type, $extensions, $msn, $data)
 {
 	global $userupload_path;
 	$filename = sanitize_filename($file, $extensions);
+	error_log("Filename: " . $filename);
 	if (!$filename)
 		return false;
 
@@ -59,6 +65,7 @@ if (isset($_POST["type"]))
 	$gateway = $db->prepared_fetch_one("SELECT * FROM gateways WHERE enabled = 1 AND id = ?;", "i", $device["gateway"]);
 
 	$data = "";
+	$error = "";
 
 	switch ($_POST["type"])
 	{
@@ -93,7 +100,7 @@ if (isset($_POST["type"]))
 			break;
 		case 'j2me':
 			if (($error = sanity_check_file($_FILES["file-java"], ["application/java-archive", "application/x-java-applet", "application/java", "application/zip"])) === false)
-			{
+			{	
 				$data = save_upload($_FILES["file-java"], "j2me", ["jar"], $device["msn"], ["mode" => "custom"]);
 			}
 			break;
@@ -101,8 +108,9 @@ if (isset($_POST["type"]))
 
 	$error = SMS::sanity_check_udh_array($data);
 	if (trim($data) == "")
-	{
-		$error = "Die Datei konnte nicht umgewandelt werden.";
+	{	
+		if ($error == "")
+			$error = "Die Datei konnte nicht umgewandelt werden.";
 	}
 	if ($error == "")
 	{
