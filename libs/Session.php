@@ -7,6 +7,8 @@ class Session
 
 	public function init()
 	{
+		global $config;
+
 		if ( session_status() == PHP_SESSION_NONE )
 		{
 			$session_handler = new SessionHandlerSQL();
@@ -15,7 +17,7 @@ class Session
 			session_name( "blamba_session" );
 
 			session_start([
-				'cookie_secure' => true,
+				'cookie_secure' => $config['use_secure_cookies'],
 				'cookie_httponly' => true,
 				'cookie_lifetime' => 365 * 24 * 60 * 60,
 				'gc_maxlifetime'  => 365 * 24 * 60 * 60,
